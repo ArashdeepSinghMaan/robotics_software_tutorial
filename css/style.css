@@ -278,5 +278,35 @@ form input, form textarea {
   margin-top: 0.5rem;
   font-style: italic;
 }
+/* Main Section Headers */
+main h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+  border-left: 6px solid #007acc;
+  padding-left: 1rem;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* Subsection Headers */
+main h3 {
+  font-size: 1.4rem;
+  color: #005a8d;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 0.4rem;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  position: relative;
+}
+
+main h3::before {
+  content: "★";
+  position: absolute;
+  left: -1.5rem;
+  color: #007acc;
+  font-size: 1rem;
+}
 
 
