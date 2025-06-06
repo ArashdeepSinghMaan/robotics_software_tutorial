@@ -137,45 +137,60 @@ form input, form textarea {
 /* Extra resources section at the bottom */
 .extra-resources {
   margin: 3rem auto 2rem auto;
-  padding: 1.5rem;
-  background-color: #fefefe;
-  border-top: 3px solid #0077cc;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  max-width: 900px;
-  font-family: 'Segoe UI', Tahoma, sans-serif;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-top: 4px solid #0077cc;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  max-width: 960px;
+  font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+  color: #333;
 }
 
 .extra-resources h3 {
-  font-size: 1.3rem;
-  color: #333;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #222;
   margin-top: 0;
-  margin-bottom: 1rem;
-  border-bottom: 2px solid #ccc;
-  padding-bottom: 0.5rem;
+  margin-bottom: 1.2rem;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 0.6rem;
 }
 
 .extra-resources ul {
   list-style: none;
   padding-left: 0;
+  margin: 0;
 }
 
 .extra-resources li {
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.extra-resources li::before {
+  content: "➤";
+  position: absolute;
+  left: 0;
+  color: #0077cc;
+  font-size: 0.9rem;
 }
 
 .extra-resources a {
   text-decoration: none;
-  color: #0077cc;
+  color: #005ea2;
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: all 0.25s ease;
 }
 
 .extra-resources a:hover {
-  color: #004999;
+  color: #003e7e;
   text-decoration: underline;
+  letter-spacing: 0.3px;
 }
-
 
 /* Lists */
 .sidebar ul,
