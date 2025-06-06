@@ -178,5 +178,31 @@ form input, form textarea {
   text-decoration: underline;
 }
 
+.main-header {
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  text-align: center;
+  padding: 2rem 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.main-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.main-header h1 span {
+  color: #ffcc00;
+  display: block;
+  margin-top: 0.3rem;
+}
+
+.main-header .tagline {
+  font-size: 1.2rem;
+  color: #ddd;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
 
 
