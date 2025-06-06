@@ -136,16 +136,46 @@ form input, form textarea {
 
 /* Extra resources section at the bottom */
 .extra-resources {
-  margin: 2rem 1rem;
-  background-color: #f9f9f9;
-  padding: 1rem;
-  border-top: 2px solid #ccc;
+  margin: 3rem auto 2rem auto;
+  padding: 1.5rem;
+  background-color: #fefefe;
+  border-top: 3px solid #0077cc;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  max-width: 900px;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
 }
 
-.extra-resources h3,
-.sidebar h3 {
+.extra-resources h3 {
+  font-size: 1.3rem;
+  color: #333;
   margin-top: 0;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 0.5rem;
 }
+
+.extra-resources ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.extra-resources li {
+  margin-bottom: 0.75rem;
+}
+
+.extra-resources a {
+  text-decoration: none;
+  color: #0077cc;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.extra-resources a:hover {
+  color: #004999;
+  text-decoration: underline;
+}
+
 
 /* Lists */
 .sidebar ul,
