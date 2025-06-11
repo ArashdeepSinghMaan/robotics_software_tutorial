@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Git Repository </title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+   <header>
+     <header class="main-header">
+  <h1>From Code to Motion: <span>Simulating and Deploying Robots</span></h1>
+  <p class="tagline">A journey through simulation, control, and real-world deployment using ROS and Gazebo.</p>
+  </header>
+    <nav>
+      <a href="../index.html">Home</a> 
+      <a href="../about.html">About</a> 
+      <a href="../ROS.html" >ROS</a>
+      <a href="../cpp.html" >CPP</a>
+      <a href="../SensorFusion.html">Sensor Fusion</a>
+      <a href="../git.html">GIT</a>
+      <a href="../pixhawk.html">PixHawk</a>
+      <a href="../contact.html">Contact</a>
+     
+    </nav>
+  </header>
+
+<main class="content-wrapper">
+  <div class="main-content">
+    
+    <h2>Git Repository</h2>
+    <p>For creating the Git Repository, follow the official documentation of GIT:</p>
+<a href="https://git-scm.com/book/ms/v2/Git-Basics-Getting-a-Git-Repository">Git Repository Creation Guide</a>
+
+   
+<section>
+  <h3>1. Embedded System Communication Protocols</h3>
+  <p>Used <strong>within</strong> a robot, mostly for sensor-actuator-microcontroller communication. These are typically <strong>wired</strong>, <strong>low-latency</strong>, and <strong>real-time</strong>.</p>
+
+  
+  <ul>
+    <li><strong>Type:</strong> Point-to-point, asynchronous</li>
+    <li><strong>Use:</strong> Serial sensors (e.g., GPS), debug consoles</li>
+    <li><strong>Pros:</strong> Simple, full-duplex</li>
+    <li><strong>Cons:</strong> Needs same baud rate, limited distance</li>
+  </ul>
+
+  <h4>I²C (Inter‑Integrated Circuit)</h4>
+  <ul>
+    <li><strong>Type:</strong> Multi-slave, two-wire</li>
+    <li><strong>Use:</strong> Connecting IMUs, temperature sensors</li>
+    <li><strong>Pros:</strong> Multiple devices on one bus</li>
+    <li><strong>Cons:</strong> Lower speed, short range</li>
+  </ul>
+
+  <h4>SPI (Serial Peripheral Interface)</h4>
+  <ul>
+    <li><strong>Type:</strong> Master-slave, four-wire</li>
+    <li><strong>Use:</strong> Flash memory, IMUs, ADCs</li>
+    <li><strong>Pros:</strong> High speed, full-duplex</li>
+    <li><strong>Cons:</strong> More wires, extra chip-select lines</li>
+  </ul>
+
+  <h4>CAN (Controller Area Network)</h4>
+  <ul>
+    <li><strong>Type:</strong> Multi-master bus</li>
+    <li><strong>Use:</strong> Motor controllers, drive systems</li>
+    <li><strong>Pros:</strong> Robust, error-checking, priority arbitration</li>
+    <li><strong>Cons:</strong> Limited speed (~1 Mbps)</li>
+  </ul>
+
+  <h4>RS‑485</h4>
+  <ul>
+    <li><strong>Type:</strong> Differential, multi-drop</li>
+    <li><strong>Use:</strong> Long-range communication</li>
+    <li><strong>Pros:</strong> Good noise immunity, multiple devices</li>
+    <li><strong>Cons:</strong> Half-duplex, requires direction control</li>
+  </ul>
+
+  <h4>EtherCAT</h4>
+  <ul>
+    <li><strong>Type:</strong> Industrial Ethernet Fieldbus</li>
+    <li><strong>Use:</strong> Real-time control of actuators</li>
+    <li><strong>Pros:</strong> Ultra-low latency, jitter control</li>
+    <li><strong>Cons:</strong> Expensive, complex</li>
+  </ul>
+
+  <h4>Cyphal (UAVCAN v2)</h4>
+  <ul>
+    <li><strong>Type:</strong> Real-time pub/sub over CAN or UDP</li>
+    <li><strong>Use:</strong> Distributed robotic systems</li>
+    <li><strong>Pros:</strong> Deterministic, open standard</li>
+    <li><strong>Cons:</strong> Less mainstream adoption</li>
+  </ul>
+</section>
+
+<section>
+  <h3>2. IoT / Network Communication Protocols</h3>
+  <p>Used to communicate <strong>between</strong> robots, to cloud systems, or to user interfaces. These work over <strong>Wi-Fi, Ethernet, or Cellular</strong>.</p>
+
+  <h4>MQTT (Message Queuing Telemetry Transport)</h4>
+  <ul>
+    <li><strong>Type:</strong> Lightweight publish-subscribe</li>
+    <li><strong>Use:</strong> Cloud telemetry, IoT dashboards</li>
+    <li><strong>Pros:</strong> Low overhead, works well on low bandwidth</li>
+    <li><strong>Cons:</strong> Not real-time</li>
+  </ul>
+
+  <h4>DDS (Data Distribution Service)</h4>
+  <ul>
+    <li><strong>Type:</strong> Real-time pub-sub middleware</li>
+    <li><strong>Use:</strong> ROS 2, multi-agent communication</li>
+    <li><strong>Pros:</strong> Real-time, QoS, reliable</li>
+    <li><strong>Cons:</strong> Complex, resource-intensive</li>
+  </ul>
+
+  <h4>HTTPS (HTTP Secure)</h4>
+  <ul>
+    <li><strong>Type:</strong> Web-based REST API protocol</li>
+    <li><strong>Use:</strong> Remote control panels, logging, APIs</li>
+    <li><strong>Pros:</strong> Secure, standard</li>
+    <li><strong>Cons:</strong> High latency, not for real-time</li>
+  </ul>
+
+  <h4>WebSocket</h4>
+  <ul>
+    <li><strong>Type:</strong> Full-duplex over TCP</li>
+    <li><strong>Use:</strong> Live dashboards, real-time UI ↔ Robot</li>
+    <li><strong>Pros:</strong> Bi-directional, efficient</li>
+    <li><strong>Cons:</strong> Client/server model complexity</li>
+  </ul>
+</section>
+
+<section>
+  <h3>3. Summary Table</h3>
+  <table border="1" cellpadding="6">
+    <tr>
+      <th>Protocol</th>
+      <th>Type</th>
+      <th>Speed</th>
+      <th>Direction</th>
+      <th>Use-case</th>
+    </tr>
+    <tr>
+      <td>UART</td>
+      <td>Serial</td>
+      <td>Low (~1 Mbps)</td>
+      <td>Duplex</td>
+      <td>Serial sensors, GPS</td>
+    </tr>
+    <tr>
+      <td>I²C</td>
+      <td>Serial</td>
+      <td>Low (100 kbps–3.4 Mbps)</td>
+      <td>Half-duplex</td>
+      <td>IMUs, EEPROMs</td>
+    </tr>
+    <tr>
+      <td>SPI</td>
+      <td>Serial</td>
+      <td>High (>10 Mbps)</td>
+      <td>Full-duplex</td>
+      <td>Flash, ADCs</td>
+    </tr>
+    <tr>
+      <td>CAN</td>
+      <td>Bus</td>
+      <td>Medium (1 Mbps)</td>
+      <td>Multi-node</td>
+      <td>Motor control, drive systems</td>
+    </tr>
+    <tr>
+      <td>RS-485</td>
+      <td>Serial</td>
+      <td>Medium</td>
+      <td>Multi-drop</td>
+      <td>Industrial robotics</td>
+    </tr>
+    <tr>
+      <td>EtherCAT</td>
+      <td>Ethernet</td>
+      <td>Very High</td>
+      <td>Real-time</td>
+      <td>Industrial actuators</td>
+    </tr>
+    <tr>
+      <td>Cyphal</td>
+      <td>Bus/UDP</td>
+      <td>Medium</td>
+      <td>Pub-sub</td>
+      <td>Distributed robotics</td>
+    </tr>
+    <tr>
+      <td>MQTT</td>
+      <td>Network</td>
+      <td>Medium</td>
+      <td>Pub-sub</td>
+      <td>Cloud telemetry</td>
+    </tr>
+    <tr>
+      <td>DDS</td>
+      <td>Network</td>
+      <td>High</td>
+      <td>Pub-sub</td>
+      <td>ROS 2 messaging</td>
+    </tr>
+    <tr>
+      <td>HTTPS</td>
+      <td>Network</td>
+      <td>Medium</td>
+      <td>Request-response</td>
+      <td>Web APIs</td>
+    </tr>
+    <tr>
+      <td>WebSocket</td>
+      <td>Network</td>
+      <td>High</td>
+      <td>Full-duplex</td>
+      <td>Real-time dashboards</td>
+    </tr>
+  </table>
+</section>
+
+
+
+<!--
+    <h3>▶️ Embed a YouTube Video</h3>
+    <iframe width="100%" height="315" src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID"
+            title="YouTube video" frameborder="0" allowfullscreen></iframe>
+
+    <h3>📑 Additional Section</h3>
+    <p>This section could contain project details, experience, or other structured info.</p>
+  </div>
+-->
+  <aside class="sidebar">
+    <h3>📌 Related Posts</h3>
+    <ul>
+      <li><a href="/simulation_gazebo/post1.html">How to Setup Gazebo</a></li>
+      <li><a href="/simulation_gazebo/post2.html">Understanding SDF Files</a></li>
+      <li><a href="/simulation_gazebo/post3.html">Creating Custom Robots</a></li>
+      <!-- Add more as needed -->
+    </ul>
+  </aside>
+</main>
+
+<section class="extra-resources">
+  <h3>📚 Other Useful Resources</h3>
+  <ul>
+    <li><a href="https://medium.com/@aliaksandr.kavalchuk/chapter-1-introduction-to-communication-protocols-bd63ef98162c">Communication Protocols</a></li>
+    <li><a href="https://www.gpcet.ac.in/wp-content/uploads/2018/08/UNIT-V.pdf">Embedded and IoT Communication Protocols</a></li>
+    <li><a href="https://electricalfundablog.com/communication-protocols-embedded-systems/">Communication Protocols</a></li>
+    <!-- Add more as needed -->
+  </ul>
+</section>
+
+
+  <footer>
+     <p>&copy; 2025 My Guide to Robotics Simulations</p>
+  </footer>
+
+</body>
+</html>
