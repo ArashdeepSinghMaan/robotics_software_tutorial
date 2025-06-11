@@ -29,32 +29,197 @@
   <div class="main-content">
     
     <h2>Communication Protocols</h2>
-<p>A <strong></strong> is a directory that helps you organize, develop, and build your ROS 2 projects efficiently.</p>
+    <p>Basically rules of communication.</p>
+<section>
+  <h3>1. Embedded System Communication Protocols</h3>
+  <p>Used <strong>within</strong> a robot, mostly for sensor-actuator-microcontroller communication. These are typically <strong>wired</strong>, <strong>low-latency</strong>, and <strong>real-time</strong>.</p>
 
-<p>For creating the workspace, follow the official documentation of ROS 2:</p>
-<a href="https://docs.ros.org/en/jazzy/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html">ROS 2 Workspace Creation Guide</a>
+  <h4>UART / USART</h4>
+  <ul>
+    <li><strong>Type:</strong> Point-to-point, asynchronous</li>
+    <li><strong>Use:</strong> Serial sensors (e.g., GPS), debug consoles</li>
+    <li><strong>Pros:</strong> Simple, full-duplex</li>
+    <li><strong>Cons:</strong> Needs same baud rate, limited distance</li>
+  </ul>
 
-<h3>📷 This is how a typical ROS 2 workspace is structured:</h3>
-<img src="https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/workspace.png" alt="Workspace" width="80%">
+  <h4>I²C (Inter‑Integrated Circuit)</h4>
+  <ul>
+    <li><strong>Type:</strong> Multi-slave, two-wire</li>
+    <li><strong>Use:</strong> Connecting IMUs, temperature sensors</li>
+    <li><strong>Pros:</strong> Multiple devices on one bus</li>
+    <li><strong>Cons:</strong> Lower speed, short range</li>
+  </ul>
 
-<h3>📷 Let's explore the workspace</h3>
+  <h4>SPI (Serial Peripheral Interface)</h4>
+  <ul>
+    <li><strong>Type:</strong> Master-slave, four-wire</li>
+    <li><strong>Use:</strong> Flash memory, IMUs, ADCs</li>
+    <li><strong>Pros:</strong> High speed, full-duplex</li>
+    <li><strong>Cons:</strong> More wires, extra chip-select lines</li>
+  </ul>
 
-<h4>Install Folder</h4>
-   
-<img src=" https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/install.png" alt="Install" width="80%">
-<p>The <strong>install/</strong> directory contains the final built packages and executables after compilation. You can run your ROS 2 nodes from here.</p>
+  <h4>CAN (Controller Area Network)</h4>
+  <ul>
+    <li><strong>Type:</strong> Multi-master bus</li>
+    <li><strong>Use:</strong> Motor controllers, drive systems</li>
+    <li><strong>Pros:</strong> Robust, error-checking, priority arbitration</li>
+    <li><strong>Cons:</strong> Limited speed (~1 Mbps)</li>
+  </ul>
 
-<h4>Build Folder</h4>
-<img src=" https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/build.png" alt="Build" width="80%">
-<p>The <strong>build/</strong> folder holds temporary files generated during compilation. This helps convert your source code into an executable format.</p>
+  <h4>RS‑485</h4>
+  <ul>
+    <li><strong>Type:</strong> Differential, multi-drop</li>
+    <li><strong>Use:</strong> Long-range communication</li>
+    <li><strong>Pros:</strong> Good noise immunity, multiple devices</li>
+    <li><strong>Cons:</strong> Half-duplex, requires direction control</li>
+  </ul>
 
-<h4>Log Folder</h4>
-<img src="https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/log.png" alt="Log" width="80%">
-<p>The <strong>log/</strong> directory stores logs and debugging information from your previous runs. Check this folder to diagnose issues or review performance details.</p>
+  <h4>EtherCAT</h4>
+  <ul>
+    <li><strong>Type:</strong> Industrial Ethernet Fieldbus</li>
+    <li><strong>Use:</strong> Real-time control of actuators</li>
+    <li><strong>Pros:</strong> Ultra-low latency, jitter control</li>
+    <li><strong>Cons:</strong> Expensive, complex</li>
+  </ul>
 
-<h4>Source Folder</h4>
-<img src=" https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/packages.png" alt="src" width="80%">
-<p>The <strong>src/</strong> folder is where your actual code lives. This is where you place your ROS 2 packages, including nodes, launch files, and custom scripts.</p>
+  <h4>Cyphal (UAVCAN v2)</h4>
+  <ul>
+    <li><strong>Type:</strong> Real-time pub/sub over CAN or UDP</li>
+    <li><strong>Use:</strong> Distributed robotic systems</li>
+    <li><strong>Pros:</strong> Deterministic, open standard</li>
+    <li><strong>Cons:</strong> Less mainstream adoption</li>
+  </ul>
+</section>
+
+<section>
+  <h3>2. IoT / Network Communication Protocols</h3>
+  <p>Used to communicate <strong>between</strong> robots, to cloud systems, or to user interfaces. These work over <strong>Wi-Fi, Ethernet, or Cellular</strong>.</p>
+
+  <h4>MQTT (Message Queuing Telemetry Transport)</h4>
+  <ul>
+    <li><strong>Type:</strong> Lightweight publish-subscribe</li>
+    <li><strong>Use:</strong> Cloud telemetry, IoT dashboards</li>
+    <li><strong>Pros:</strong> Low overhead, works well on low bandwidth</li>
+    <li><strong>Cons:</strong> Not real-time</li>
+  </ul>
+
+  <h4>DDS (Data Distribution Service)</h4>
+  <ul>
+    <li><strong>Type:</strong> Real-time pub-sub middleware</li>
+    <li><strong>Use:</strong> ROS 2, multi-agent communication</li>
+    <li><strong>Pros:</strong> Real-time, QoS, reliable</li>
+    <li><strong>Cons:</strong> Complex, resource-intensive</li>
+  </ul>
+
+  <h4>HTTPS (HTTP Secure)</h4>
+  <ul>
+    <li><strong>Type:</strong> Web-based REST API protocol</li>
+    <li><strong>Use:</strong> Remote control panels, logging, APIs</li>
+    <li><strong>Pros:</strong> Secure, standard</li>
+    <li><strong>Cons:</strong> High latency, not for real-time</li>
+  </ul>
+
+  <h4>WebSocket</h4>
+  <ul>
+    <li><strong>Type:</strong> Full-duplex over TCP</li>
+    <li><strong>Use:</strong> Live dashboards, real-time UI ↔ Robot</li>
+    <li><strong>Pros:</strong> Bi-directional, efficient</li>
+    <li><strong>Cons:</strong> Client/server model complexity</li>
+  </ul>
+</section>
+
+<section>
+  <h3>3. Summary Table</h3>
+  <table border="1" cellpadding="6">
+    <tr>
+      <th>Protocol</th>
+      <th>Type</th>
+      <th>Speed</th>
+      <th>Direction</th>
+      <th>Use-case</th>
+    </tr>
+    <tr>
+      <td>UART</td>
+      <td>Serial</td>
+      <td>Low (~1 Mbps)</td>
+      <td>Duplex</td>
+      <td>Serial sensors, GPS</td>
+    </tr>
+    <tr>
+      <td>I²C</td>
+      <td>Serial</td>
+      <td>Low (100 kbps–3.4 Mbps)</td>
+      <td>Half-duplex</td>
+      <td>IMUs, EEPROMs</td>
+    </tr>
+    <tr>
+      <td>SPI</td>
+      <td>Serial</td>
+      <td>High (>10 Mbps)</td>
+      <td>Full-duplex</td>
+      <td>Flash, ADCs</td>
+    </tr>
+    <tr>
+      <td>CAN</td>
+      <td>Bus</td>
+      <td>Medium (1 Mbps)</td>
+      <td>Multi-node</td>
+      <td>Motor control, drive systems</td>
+    </tr>
+    <tr>
+      <td>RS-485</td>
+      <td>Serial</td>
+      <td>Medium</td>
+      <td>Multi-drop</td>
+      <td>Industrial robotics</td>
+    </tr>
+    <tr>
+      <td>EtherCAT</td>
+      <td>Ethernet</td>
+      <td>Very High</td>
+      <td>Real-time</td>
+      <td>Industrial actuators</td>
+    </tr>
+    <tr>
+      <td>Cyphal</td>
+      <td>Bus/UDP</td>
+      <td>Medium</td>
+      <td>Pub-sub</td>
+      <td>Distributed robotics</td>
+    </tr>
+    <tr>
+      <td>MQTT</td>
+      <td>Network</td>
+      <td>Medium</td>
+      <td>Pub-sub</td>
+      <td>Cloud telemetry</td>
+    </tr>
+    <tr>
+      <td>DDS</td>
+      <td>Network</td>
+      <td>High</td>
+      <td>Pub-sub</td>
+      <td>ROS 2 messaging</td>
+    </tr>
+    <tr>
+      <td>HTTPS</td>
+      <td>Network</td>
+      <td>Medium</td>
+      <td>Request-response</td>
+      <td>Web APIs</td>
+    </tr>
+    <tr>
+      <td>WebSocket</td>
+      <td>Network</td>
+      <td>High</td>
+      <td>Full-duplex</td>
+      <td>Real-time dashboards</td>
+    </tr>
+  </table>
+</section>
+
+
+
 <!--
     <h3>▶️ Embed a YouTube Video</h3>
     <iframe width="100%" height="315" src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID"
