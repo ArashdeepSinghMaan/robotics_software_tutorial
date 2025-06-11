@@ -28,14 +28,90 @@
  <main class="content-wrapper">
     <div class="main-content">
       <h2>Sensor Fusion</h2>
-      <h3>Introduction to ROS: The Backbone of Modern Robotics</h3><p> 
+      <h3>Sensor Fusion v/s Sensor Integration</h3><p> 
 <section>
-    <p>Robots are complex systems composed of various hardware components like sensors, motors, cameras, power systems, and more. To make all these heterogeneous components work together as a single coordinated unit, we need robust software that can manage, control, and integrate these devices seamlessly. This is where <strong>ROS—Robot Operating System</strong>—comes into play.</p>
-    
-    <p>Despite its name, ROS is not a true operating system. Instead, it is a <strong>middleware framework</strong> that facilitates the development of robotic software. It abstracts the complexities of hardware integration and provides developers with tools and libraries for building robust, scalable, and reusable robotic systems.</p>
-  </section>
+    Sensor integration is the process of connecting and configuring multiple sensors in a system so that their data can be accessed and used.
+</p>
 
-  <section>
+<h4>Focus</h4>
+<ul>
+  <li>Physical and software connection</li>
+  <li>Data acquisition and communication</li>
+  <li>Ensuring sensors are properly interfaced with the controller or computer</li>
+</ul>
+
+<h4>Examples</h4>
+<ul>
+  <li>Connecting IMU and GPS via I2C and UART to a microcontroller</li>
+  <li>Writing ROS2 drivers or launching sensor nodes to access sensor data</li>
+  <li>Syncing timestamps from different sensors (e.g., camera and LiDAR)</li>
+</ul>
+
+<h4>Goal</h4>
+<p>Make raw data from sensors available for use.</p>
+
+<h4>Sensor Fusion</h4>
+<p>
+Sensor fusion is the mathematical process of combining data from multiple sensors to produce a more accurate, reliable, or comprehensive estimate of the environment or system state.
+</p>
+
+<h4>Focus</h4>
+<ul>
+  <li>Algorithms and estimation</li>
+  <li>Accuracy, reliability, and robustness</li>
+  <li>Overcoming individual sensor limitations</li>
+</ul>
+
+<h4>Examples</h4>
+<ul>
+  <li>Using Kalman Filter to fuse IMU and GPS for accurate position estimation</li>
+  <li>Combining camera and LiDAR data for better object detection</li>
+  <li>Merging ultrasonic and IR data for obstacle distance estimation</li>
+</ul>
+
+<h4>Goal</h4>
+<p>Improve perception or estimation by leveraging complementary strengths of multiple sensors.</p>
+
+<h3>Summary Table</h3>
+<table border="1" cellpadding="5" cellspacing="0">
+  <tr>
+    <th>Aspect</th>
+    <th>Sensor Integration</th>
+    <th>Sensor Fusion</th>
+  </tr>
+  <tr>
+    <td>What it does</td>
+    <td>Connects and sets up sensors</td>
+    <td>Combines data from sensors</td>
+  </tr>
+  <tr>
+    <td>Focus</td>
+    <td>Hardware + basic software</td>
+    <td>Algorithms and data processing</td>
+  </tr>
+  <tr>
+    <td>Level</td>
+    <td>Low-level system setup</td>
+    <td>High-level information processing</td>
+  </tr>
+  <tr>
+    <td>Tools/Techniques</td>
+    <td>Interfaces (I2C, SPI, UART), Drivers, ROS2</td>
+    <td>Kalman Filter, Bayesian Estimation, DNNs</td>
+  </tr>
+  <tr>
+    <td>Output</td>
+    <td>Raw or calibrated sensor data</td>
+    <td>Refined or estimated data (e.g., position, map)</td>
+  </tr>
+</table>
+
+<h3>Example: Drone</h3>
+<ul>
+  <li><strong>Sensor Integration:</strong> Connecting IMU, GPS, and barometer to Pixhawk or Jetson Nano; ensuring each publishes data to a ROS2 topic.</li>
+  <li><strong>Sensor Fusion:</strong> Using an Extended Kalman Filter (EKF) to combine IMU + GPS + barometer to estimate drone position with higher accuracy.</li>
+</ul>
+ <section>
     <h3>Why Use ROS?</h3>
     <ul>
       <li><strong>Hardware abstraction</strong> to integrate different devices.</li>
@@ -47,140 +123,95 @@
   </section>
 
   <section>
-    <h3>Key Tools and Libraries</h3>
-    <ul>
-      <li><strong>1. Gazebo:</strong> A powerful 3D simulator for testing robot models with accurate physics and environment modeling.</li>
-      <li><strong>2. RViz:</strong> A visualization tool for sensor data, robot states, planned paths, and maps.</li>
-      <li><strong>3. MoveIt:</strong> A flexible motion planning framework for robotic arms, supporting kinematics and trajectory planning.</li>
-      <li><strong>4. Navigation2 (Nav2):</strong> The ROS 2 navigation stack, handling mapping, localization, planning, and obstacle avoidance.</li>
-      <li><strong>5. ros_control:</strong> A standard interface for robot hardware control, managing actuators and controllers.</li>
-    </ul>
-  </section>
+    <h3>Understanding Sensor Fusion: What to Focus On</h3>
 
-  <section>
-    <h3>ROS Versions: ROS 1 vs ROS 2</h3>
-    <h3>ROS 1</h3>
-    <ul>
-      <li>Established and mature.</li>
-      <li>Large user base and extensive package availability.</li>
-      <li>Single-threaded by default; less suitable for real-time or safety-critical applications.</li>
-    </ul>
+<h4>1. Sensor Hardware Level — What to Know</h4>
+<p>You are not designing the sensors, but using them effectively. So focus on:</p>
 
-    <h3>ROS 2</h3>
-    <ul>
-      <li>Designed to overcome ROS 1 limitations.</li>
-      <li>Built on top of <strong>DDS (Data Distribution Service)</strong> for real-time distributed communication.</li>
-      <li>Supports multi-platform, real-time, and secure applications.</li>
-      <li>Active development and strong community support.</li>
-    </ul>
+<h4>Power Requirements</h4>
+<ul>
+  <li>Each sensor needs a specific voltage and current.</li>
+  <li>Essential for battery-powered or embedded systems.</li>
+  <li><strong>Why?</strong> To avoid brownouts, overheating, or damage.</li>
+</ul>
 
-    <h3>Version Types</h3>
-    <ul>
-      <li><strong>LTS (Long-Term Support):</strong> Stable versions that receive long-term updates (e.g., ROS 2 Humble).</li>
-      <li><strong>EOL (End-of-Life):</strong> Versions that are no longer maintained or updated.</li>
-    </ul>
-  </section>
+<h4>Communication Protocols</h4>
+<ul>
+  <li>Common protocols: I2C, SPI, UART, CAN, USB.</li>
+  <li>You need compatible ports on your microcontroller or computer.</li>
+  <li><strong>Why?</strong> To correctly read and sync data.</li>
+</ul>
 
-  <section>
-    <h3>ROS 2 Architecture: Core Concepts</h3>
-    <ul>
-      <li><strong>Nodes:</strong> Independent processes that execute specific tasks, like camera drivers or control systems.</li>
-      <li><strong>Topics:</strong> Publish/Subscribe communication channels used for data exchange between nodes.</li>
-      <li><strong>Services:</strong> Synchronous communication for request-response interactions between nodes.</li>
-      <li><strong>Actions:</strong> Asynchronous communication with feedback for long-duration tasks.</li>
-      <li><strong>Parameters:</strong> Configurable runtime values that influence node behavior.</li>
-      <li><strong>ROS Packages:</strong> Directory structures containing code, configuration, and metadata for modular ROS applications.</li>
-    </ul>
-  </section>
+<h4>Data Output Format</h4>
+<ul>
+  <li>Some sensors give raw data (e.g., accelerometer in m/s²).</li>
+  <li>Others give processed values (e.g., GPS gives coordinates).</li>
+  <li><strong>Why?</strong> To interpret and fuse data correctly.</li>
+</ul>
 
-  <section>
-    <h3>System Requirements</h3>
-    <p>
-      ROS is primarily supported on <strong>Linux</strong>, especially <strong>Ubuntu</strong>. While ROS 2 also offers partial support for Windows and macOS, Linux remains the most reliable and widely used platform for ROS development.
-    </p>
-  </section>
+<h3>2. Software Level — Sensor Integration</h3>
+<p>Once sensors are powered and connected, ensure their data is accessible in software:</p>
+<ul>
+  <li>Use or write drivers (ROS2 nodes, C/C++/Python interfaces).</li>
+  <li>Ensure data is publishing (e.g., <code>/imu/data</code>, <code>/gps/fix</code> topics).</li>
+  <li>Sync data sources using timestamps if needed.</li>
+</ul>
 
-      
-     
-      <h2>ROS Architecture Explained Using a Company Analogy</h2>
+<h3>3. Fusion Algorithms — Combining Sensor Data</h3>
 
-  <section>
-    <h3>🏢 ROS = Company Management System</h3>
-    <p>
-      Just like a large company needs coordinated communication among departments to function smoothly, a robot uses ROS to coordinate its components.
-    </p>
-  </section>
+<h4>Popular Algorithms</h4>
+<ul>
+  <li><strong>Kalman Filter (KF)</strong> — For linear systems.</li>
+  <li><strong>Extended Kalman Filter (EKF)</strong> — For nonlinear systems.</li>
+  <li><strong>Complementary Filter</strong> — Simple, good for fusing gyroscope and accelerometer.</li>
+  <li><strong>Particle Filter</strong> — Probabilistic, used in localization.</li>
+  <li><strong>Deep Learning Models</strong> — For perception tasks (e.g., image + LiDAR).</li>
+</ul>
 
-  <section>
-    <h3>🔹 Nodes = Departments</h3>
-    <ul>
-      <li><span class="emoji">🖥️</span> <strong>Vision Department</strong> (Camera Node): Captures and processes images.</li>
-      <li><span class="emoji">🦿</span> <strong>Actuation Department</strong> (Motor Node): Controls wheels and joints.</li>
-      <li><span class="emoji">🧭</span> <strong>Navigation Department</strong> (Planner Node): Finds paths and avoids obstacles.</li>
-      <li><span class="emoji">🛠️</span> <strong>Control Department</strong> (PID Node): Ensures actions are smooth and accurate.</li>
-      <li><span class="emoji">📡</span> <strong>Sensor Department</strong> (IMU/LiDAR Node): Measures environment and motion.</li>
-    </ul>
-  </section>
+<h4>What Fusion Algorithms Do</h4>
+<ul>
+  <li>Filter out noise from raw data.</li>
+  <li>Merge complementary data types (e.g., IMU + GPS).</li>
+  <li>Handle delays, dropout, and uncertainties.</li>
+</ul>
 
-  <section>
-    <h3>🔹 Topics = Inter-Department Memos</h3>
-    <p>
-      Nodes communicate via "topics", similar to sending memos between departments:
-    </p>
-    <ul>
-      <li>The Vision Node <strong>publishes</strong> images to a topic like <code>/camera/image_raw</code>.</li>
-      <li>The Navigation Node <strong>subscribes</strong> to it to decide movement.</li>
-    </ul>
-  </section>
+<h4>Key Concepts to Understand</h4>
+<ul>
+  <li><strong>State vector:</strong> What are you estimating? (e.g., position, velocity, orientation)</li>
+  <li><strong>Measurement model:</strong> How sensor data maps to the state.</li>
+  <li><strong>Update rate:</strong> Fusion must handle fast and slow sensors gracefully.</li>
+</ul>
 
-  <section>
-    <h3>🔹 Messages = The Memo Content</h3>
-    <p>
-      Messages contain the actual data: position, speed, sensor values — just like a memo contains subject, date, and instructions.
-    </p>
-  </section>
+<h3>4. Example: Fusing IMU + GPS</h3>
+<table border="1" cellpadding="5" cellspacing="0">
+  <tr>
+    <th>Step</th>
+    <th>What You Focus On</th>
+  </tr>
+  <tr>
+    <td>Choose Sensors</td>
+    <td>Check power, communication (e.g., IMU via I2C, GPS via UART)</td>
+  </tr>
+  <tr>
+    <td>Integrate</td>
+    <td>Write or use drivers, confirm data on topics</td>
+  </tr>
+  <tr>
+    <td>Fuse</td>
+    <td>Use EKF to combine GPS and IMU for accurate position</td>
+  </tr>
+  <tr>
+    <td>Use Output</td>
+    <td>Feed fused result to controller or mapping system</td>
+  </tr>
+</table>
 
-  <section>
-    <h3>🔹 Services = Direct Emails with Replies</h3>
-    <p>
-      When one department needs a specific answer from another (like HR asking IT about system status), ROS uses <strong>services</strong> — a request-response interaction.
-    </p>
-  </section>
+</section>
 
-  <section>
-    <h3>🔹 Actions = Long Projects with Updates</h3>
-    <p>
-      Actions are like assigning a long-term project to a team with periodic progress updates and a final report.
-    </p>
-  </section>
+ 
 
-  <section>
-    <h3>🔹 Parameters = HR Records / Settings</h3>
-    <p>
-      Global settings (e.g., max speed, sensor limits) are stored in a "parameter server" — like HR records accessible to all departments.
-    </p>
-  </section>
-
-  <section>
-    <h3>🔹 ROS Master / DDS = Internal Communication System</h3>
-    <ul>
-      <li><strong>ROS 1:</strong> Uses <strong>ROS Master</strong>, like a company receptionist managing who talks to whom.</li>
-      <li><strong>ROS 2:</strong> Uses <strong>DDS</strong>, like a modern digital messaging system where employees (nodes) connect directly.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h3>✅ Final Picture</h3>
-    <p>
-      Just as a company with well-defined roles and communication policies can function efficiently, a robot using ROS functions through coordinated nodes, topic-based communication, and reusable software modules. ROS turns robotic chaos into collaborative automation.
-    </p>
-  </section>
-      
-      
-       <h3>Comparison of ROS1 and ROS2</h3>
-      <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRM3tx7cl7GBXeW37wPT33BjZRsEMPUUhncP_TvJtMc_999-4OFrlRWKCVwFXMnmw/pubembed?start=true&loop=true&delayms=3000" frameborder="0" width="1080" height="749" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-     
-      
+  
+      <!--
       <h3>📷 Add an Image</h3>
       <img src="images/your-image.jpg" alt="A related image about pointers or simulation">
 
@@ -190,30 +221,27 @@
 
       <h3>📑 Additional Section</h3>
       <p>Learn how pointers are used in plugin development, managing memory in ROS2 nodes, and other relevant applications.</p>
-
+-->
    <div class="tutorial-section">
-  <h3>🧑‍💻 ROS2 Tutorials</h3>
+  <h3>🧑‍💻 Sensor Fusion Tutorials</h3>
+  <p>First we will focus on individual topics. Then we will move forward to sensors and will see how these topics reflect on the sensors.</p>
   <ul class="tutorial-links">
     <li><a href="SensorFusion/Communication_protocol.html">Communication Protocol</a></li>
-    <li><a href="ROS/package.html">Package</a></li>
-    <li><a href="ROS/cmake.html">CMake</a></li>
-    <li><a href="ROS/colcon.html">Colcon</a></li>
-    <li><a href="ROS/packge_xml.html">Package XML</a></li>
-    <li><a href="ROS/node.html">Node</a></li>
-    <li><a href="ROS/topic.html">Topic</a></li>
-    <li><a href="ROS/service.html">Service</a></li>
-    <li><a href="ROS/launch_files.html">Launch File</a></li>
-    <li><a href="ROS/action.html">Action</a></li>
-    <li><a href="ROS/parameters.html">Parameters</a></li>
-    <li><a href="ROS/rosbag.html">Ros Bag</a></li>
-    <li><a href="ROS/publisher_subscriber.html">Publisher Subscriber</a></li>
-    <li><a href="ROS/service_client.html">Service Client</a></li>
-    <li><a href="ROS/msg.html">Message</a></li>
-    <li><a href="ROS/YAML.html">YAML</a></li>
-    <li><a href="ROS/tf2.html">TF2</a></li>
-     <li><a href="ROS/rviz.html">Rviz</a></li>
-     <li><a href="ROS/security.html">Security</a></li>
-     <li><a href="ROS/action_server_client.html">Action Server and Client</a></li>
+    <li><a href="SensorFusion/power.html">power</a></li>
+    <li><a href="SensorFusion/dataoutput.html">Data Output Format</a></li>
+    <li><a href="SensorFusion/drivers.html">Drivers</a></li>
+    <li><a href="SensorFusion/kalman.html">Kalman Filter</a></li>
+    <li><a href="SensorFusion/extended.html">Extended Kalman Filter</a></li>
+    <li><a href="SensorFusion/particle.html">Particle Filter</a></li>
+    <li><a href="SensorFusion/imu.html">IMU</a></li>
+    <li><a href="SensorFusion/gps.html">GPS</a></li>
+    <li><a href="SensorFusion/lidar.html">LIDAR</a></li>
+    <li><a href="SensorFusion/radar.html">RADAR</a></li>
+    <li><a href="SensorFusion/temperature.html">Temperature Sensor</a></li>
+    <li><a href="SensorFusion/pressure.html">Pressure Sensor</a></li>
+    <li><a href="SensorFusion/camera">Camera</a></li>
+    <li><a href="SensorFusion/sonar.html">Sonar</a></li>
+
   </ul>
 </div>
 
