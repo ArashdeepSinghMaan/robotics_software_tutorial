@@ -123,7 +123,7 @@
     <li>Make changes and push to your fork</li>
     <li>Create a pull request to the original repo</li>
   </ol>
-
+<!--
   <h3>🧠 Other Git Concepts</h3>
   <p>Here’s a checklist of essential Git features:</p>
   <table border="1" cellpadding="6">
@@ -145,6 +145,68 @@
       <tr><td>remote</td><td>✅ (implied)</td><td>Manage remote repo URLs</td></tr>
     </tbody>
   </table>
+      -->
+      <h3>🧩 Other Git Concepts</h3>
+
+  <h4>✅ git status</h4>
+  <p>Displays the current state of the working directory and staging area.</p>
+  <pre><code>git status</code></pre>
+
+  <h4>✅ git log</h4>
+  <p>Shows the project's commit history.</p>
+  <pre><code>git log</code></pre>
+  <p>Optional flags:</p>
+  <pre><code>git log --oneline --graph --all</code></pre>
+
+  <h4>✅ git diff</h4>
+  <p>Shows differences between files, commits, or branches.</p>
+  <pre><code>git diff
+git diff --staged
+git diff HEAD~1</code></pre>
+
+  <h4>✅ git clone</h4>
+  <p>Creates a local copy of a remote Git repository.</p>
+  <pre><code>git clone https://github.com/user/repo.git</code></pre>
+
+  <h4>✅ git rebase</h4>
+  <p>Rewrites the base of a branch by reapplying commits on a new base.</p>
+  <pre><code>git rebase main</code></pre>
+  <p><strong>Note:</strong> Avoid using on public branches to prevent history conflicts.</p>
+
+  <h4>✅ git stash</h4>
+  <p>Temporarily saves changes that are not ready to be committed.</p>
+  <pre><code>git stash
+git stash apply
+git stash pop
+git stash list</code></pre>
+
+  <h4>✅ .gitignore</h4>
+  <p>Used to tell Git to ignore specific files or directories.</p>
+  <p>Example:</p>
+  <pre><code>*.log
+build/
+.env
+__pycache__/</code></pre>
+
+  <h3>🧠 Summary Table</h3>
+  <table border="1" cellpadding="6">
+    <thead>
+      <tr>
+        <th>Command/Concept</th>
+        <th>Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>git status</td><td>Shows current working/staging state</td></tr>
+      <tr><td>git log</td><td>Shows commit history</td></tr>
+      <tr><td>git diff</td><td>Compares file changes</td></tr>
+      <tr><td>git clone</td><td>Copies a remote repo to your system</td></tr>
+      <tr><td>git rebase</td><td>Rewrites history to apply changes on a new base</td></tr>
+      <tr><td>git stash</td><td>Saves uncommitted work temporarily</td></tr>
+      <tr><td>.gitignore</td><td>Excludes files from being tracked</td></tr>
+    </tbody>
+  </table>
+      
 <h3>📌 Summary</h3>
   <table border="1" cellpadding="6">
     <thead>
