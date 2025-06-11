@@ -34,191 +34,44 @@
 
    
 <section>
-  <h3>1. Embedded System Communication Protocols</h3>
-  <p>Used <strong>within</strong> a robot, mostly for sensor-actuator-microcontroller communication. These are typically <strong>wired</strong>, <strong>low-latency</strong>, and <strong>real-time</strong>.</p>
+  <h3>🦴 Git Repository Skeleton</h3>
+  <p>When you run <code>git init</code>, Git creates a <code>.git</code> folder. This is the brain of your Git repository.</p>
 
-  
+  <h4>📁 .git Folder Structure</h4>
+  <pre>
+.git/
+├── HEAD
+├── config
+├── description
+├── hooks/
+├── info/
+├── objects/
+├── refs/
+│   ├── heads/
+│   └── tags/
+└── index
+  </pre>
+
+  <h4>🧩 Explanation of Contents</h4>
   <ul>
-    <li><strong>Type:</strong> Point-to-point, asynchronous</li>
-    <li><strong>Use:</strong> Serial sensors (e.g., GPS), debug consoles</li>
-    <li><strong>Pros:</strong> Simple, full-duplex</li>
-    <li><strong>Cons:</strong> Needs same baud rate, limited distance</li>
+    <li><strong>HEAD</strong>: Points to the current branch or commit</li>
+    <li><strong>config</strong>: Repository-specific configuration</li>
+    <li><strong>description</strong>: Used by Git hosting software</li>
+    <li><strong>hooks/</strong>: Scripts triggered by Git events (e.g., pre-commit)</li>
+    <li><strong>info/</strong>: Contains global ignore file (exclude)</li>
+    <li><strong>objects/</strong>: Stores actual file contents, commits, and trees</li>
+    <li><strong>refs/</strong>: Stores branches and tags</li>
+    <li><strong>index</strong>: The staging area (what's ready to be committed)</li>
   </ul>
 
-  <h4>I²C (Inter‑Integrated Circuit)</h4>
-  <ul>
-    <li><strong>Type:</strong> Multi-slave, two-wire</li>
-    <li><strong>Use:</strong> Connecting IMUs, temperature sensors</li>
-    <li><strong>Pros:</strong> Multiple devices on one bus</li>
-    <li><strong>Cons:</strong> Lower speed, short range</li>
-  </ul>
+  <h4>🔍 Git Internals</h4>
+  <p><strong>objects/</strong> stores everything Git tracks: blobs (files), trees (folders), and commits.</p>
+  <p><strong>refs/heads/</strong> stores branch pointers; <strong>HEAD</strong> tells Git what branch you are on.</p>
 
-  <h4>SPI (Serial Peripheral Interface)</h4>
-  <ul>
-    <li><strong>Type:</strong> Master-slave, four-wire</li>
-    <li><strong>Use:</strong> Flash memory, IMUs, ADCs</li>
-    <li><strong>Pros:</strong> High speed, full-duplex</li>
-    <li><strong>Cons:</strong> More wires, extra chip-select lines</li>
-  </ul>
+  <h4>🎓 Analogy</h4>
+  <p>The <code>.git</code> folder is like the engine room of a ship. It stores your history, current position, and future destination.</p>
 
-  <h4>CAN (Controller Area Network)</h4>
-  <ul>
-    <li><strong>Type:</strong> Multi-master bus</li>
-    <li><strong>Use:</strong> Motor controllers, drive systems</li>
-    <li><strong>Pros:</strong> Robust, error-checking, priority arbitration</li>
-    <li><strong>Cons:</strong> Limited speed (~1 Mbps)</li>
-  </ul>
 
-  <h4>RS‑485</h4>
-  <ul>
-    <li><strong>Type:</strong> Differential, multi-drop</li>
-    <li><strong>Use:</strong> Long-range communication</li>
-    <li><strong>Pros:</strong> Good noise immunity, multiple devices</li>
-    <li><strong>Cons:</strong> Half-duplex, requires direction control</li>
-  </ul>
-
-  <h4>EtherCAT</h4>
-  <ul>
-    <li><strong>Type:</strong> Industrial Ethernet Fieldbus</li>
-    <li><strong>Use:</strong> Real-time control of actuators</li>
-    <li><strong>Pros:</strong> Ultra-low latency, jitter control</li>
-    <li><strong>Cons:</strong> Expensive, complex</li>
-  </ul>
-
-  <h4>Cyphal (UAVCAN v2)</h4>
-  <ul>
-    <li><strong>Type:</strong> Real-time pub/sub over CAN or UDP</li>
-    <li><strong>Use:</strong> Distributed robotic systems</li>
-    <li><strong>Pros:</strong> Deterministic, open standard</li>
-    <li><strong>Cons:</strong> Less mainstream adoption</li>
-  </ul>
-</section>
-
-<section>
-  <h3>2. IoT / Network Communication Protocols</h3>
-  <p>Used to communicate <strong>between</strong> robots, to cloud systems, or to user interfaces. These work over <strong>Wi-Fi, Ethernet, or Cellular</strong>.</p>
-
-  <h4>MQTT (Message Queuing Telemetry Transport)</h4>
-  <ul>
-    <li><strong>Type:</strong> Lightweight publish-subscribe</li>
-    <li><strong>Use:</strong> Cloud telemetry, IoT dashboards</li>
-    <li><strong>Pros:</strong> Low overhead, works well on low bandwidth</li>
-    <li><strong>Cons:</strong> Not real-time</li>
-  </ul>
-
-  <h4>DDS (Data Distribution Service)</h4>
-  <ul>
-    <li><strong>Type:</strong> Real-time pub-sub middleware</li>
-    <li><strong>Use:</strong> ROS 2, multi-agent communication</li>
-    <li><strong>Pros:</strong> Real-time, QoS, reliable</li>
-    <li><strong>Cons:</strong> Complex, resource-intensive</li>
-  </ul>
-
-  <h4>HTTPS (HTTP Secure)</h4>
-  <ul>
-    <li><strong>Type:</strong> Web-based REST API protocol</li>
-    <li><strong>Use:</strong> Remote control panels, logging, APIs</li>
-    <li><strong>Pros:</strong> Secure, standard</li>
-    <li><strong>Cons:</strong> High latency, not for real-time</li>
-  </ul>
-
-  <h4>WebSocket</h4>
-  <ul>
-    <li><strong>Type:</strong> Full-duplex over TCP</li>
-    <li><strong>Use:</strong> Live dashboards, real-time UI ↔ Robot</li>
-    <li><strong>Pros:</strong> Bi-directional, efficient</li>
-    <li><strong>Cons:</strong> Client/server model complexity</li>
-  </ul>
-</section>
-
-<section>
-  <h3>3. Summary Table</h3>
-  <table border="1" cellpadding="6">
-    <tr>
-      <th>Protocol</th>
-      <th>Type</th>
-      <th>Speed</th>
-      <th>Direction</th>
-      <th>Use-case</th>
-    </tr>
-    <tr>
-      <td>UART</td>
-      <td>Serial</td>
-      <td>Low (~1 Mbps)</td>
-      <td>Duplex</td>
-      <td>Serial sensors, GPS</td>
-    </tr>
-    <tr>
-      <td>I²C</td>
-      <td>Serial</td>
-      <td>Low (100 kbps–3.4 Mbps)</td>
-      <td>Half-duplex</td>
-      <td>IMUs, EEPROMs</td>
-    </tr>
-    <tr>
-      <td>SPI</td>
-      <td>Serial</td>
-      <td>High (>10 Mbps)</td>
-      <td>Full-duplex</td>
-      <td>Flash, ADCs</td>
-    </tr>
-    <tr>
-      <td>CAN</td>
-      <td>Bus</td>
-      <td>Medium (1 Mbps)</td>
-      <td>Multi-node</td>
-      <td>Motor control, drive systems</td>
-    </tr>
-    <tr>
-      <td>RS-485</td>
-      <td>Serial</td>
-      <td>Medium</td>
-      <td>Multi-drop</td>
-      <td>Industrial robotics</td>
-    </tr>
-    <tr>
-      <td>EtherCAT</td>
-      <td>Ethernet</td>
-      <td>Very High</td>
-      <td>Real-time</td>
-      <td>Industrial actuators</td>
-    </tr>
-    <tr>
-      <td>Cyphal</td>
-      <td>Bus/UDP</td>
-      <td>Medium</td>
-      <td>Pub-sub</td>
-      <td>Distributed robotics</td>
-    </tr>
-    <tr>
-      <td>MQTT</td>
-      <td>Network</td>
-      <td>Medium</td>
-      <td>Pub-sub</td>
-      <td>Cloud telemetry</td>
-    </tr>
-    <tr>
-      <td>DDS</td>
-      <td>Network</td>
-      <td>High</td>
-      <td>Pub-sub</td>
-      <td>ROS 2 messaging</td>
-    </tr>
-    <tr>
-      <td>HTTPS</td>
-      <td>Network</td>
-      <td>Medium</td>
-      <td>Request-response</td>
-      <td>Web APIs</td>
-    </tr>
-    <tr>
-      <td>WebSocket</td>
-      <td>Network</td>
-      <td>High</td>
-      <td>Full-duplex</td>
-      <td>Real-time dashboards</td>
-    </tr>
-  </table>
 </section>
 
 
