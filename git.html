@@ -84,7 +84,68 @@
     <li>Resolve merge conflicts</li>
   </ul>
 
-  <h3>📌 Summary</h3>
+  
+    <h3>🔁 Git Push, Pull Requests, and Forks</h3>
+
+  <h4>✅ git push</h4>
+  <p><code>git push</code> uploads your local commits to a <strong>remote repository</strong> (like GitHub).</p>
+  <p>Example:</p>
+  <pre><code>git push origin main</code></pre>
+  <p>This pushes your changes to the <code>main</code> branch on the remote named <code>origin</code>.</p>
+
+  <h4>✅ Pull Request (PR)</h4>
+  <p>A <strong>Pull Request</strong> is a request to merge your changes into someone else’s branch or repository. It's used in collaboration workflows for:</p>
+  <ul>
+    <li>Code review</li>
+    <li>Discussion and feedback</li>
+    <li>CI checks (automated tests)</li>
+    <li>Approval and controlled merging</li>
+  </ul>
+  <p><strong>Workflow:</strong></p>
+  <ol>
+    <li>You push changes to your branch</li>
+    <li>Create a pull request on GitHub</li>
+    <li>Reviewers approve or suggest changes</li>
+    <li>The branch is merged after review</li>
+  </ol>
+
+  <h4>✅ Fork</h4>
+  <p>A <strong>fork</strong> is a personal copy of someone else's repository on GitHub. It allows you to:</p>
+  <ul>
+    <li>Experiment freely</li>
+    <li>Work independently without affecting the original</li>
+    <li>Submit a Pull Request later if needed</li>
+  </ul>
+  <p><strong>Typical Open Source Flow:</strong></p>
+  <ol>
+    <li>Fork the repo on GitHub</li>
+    <li>Clone it to your machine</li>
+    <li>Make changes and push to your fork</li>
+    <li>Create a pull request to the original repo</li>
+  </ol>
+
+  <h3>🧠 Other Git Concepts</h3>
+  <p>Here’s a checklist of essential Git features:</p>
+  <table border="1" cellpadding="6">
+    <thead>
+      <tr>
+        <th>Concept</th>
+        <th>Covered?</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>init, add, commit</td><td>✅</td><td>Start and snapshot changes</td></tr>
+      <tr><td>status, log, diff</td><td>❌</td><td>Inspect file status and history</td></tr>
+      <tr><td>push, pull, fetch</td><td>✅/⏳</td><td>Share and receive changes</td></tr>
+      <tr><td>branch, merge, checkout</td><td>✅</td><td>Parallel development</td></tr>
+      <tr><td>clone</td><td>❌</td><td>Copy a repo locally</td></tr>
+      <tr><td>rebase, stash</td><td>❌</td><td>Advanced features</td></tr>
+      <tr><td>.gitignore</td><td>❌</td><td>Ignore unwanted files</td></tr>
+      <tr><td>remote</td><td>✅ (implied)</td><td>Manage remote repo URLs</td></tr>
+    </tbody>
+  </table>
+<h3>📌 Summary</h3>
   <table border="1" cellpadding="6">
     <thead>
       <tr>
@@ -115,7 +176,27 @@
       </tr>
     </tbody>
   </table>
-   
+  <h3>🔄 Git vs GitHub</h3>
+  <table border="1" cellpadding="6">
+    <thead>
+      <tr>
+        <th>Aspect</th>
+        <th>Git</th>
+        <th>GitHub</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>What is it?</td><td>Command-line tool</td><td>Web-based platform</td></tr>
+      <tr><td>Role</td><td>Version control system</td><td>Hosting and collaboration</td></tr>
+      <tr><td>Works offline?</td><td>Yes</td><td>No</td></tr>
+      <tr><td>Functionality</td><td>Tracking changes, branching, merging</td><td>PRs, Issues, CI/CD, team work</td></tr>
+      <tr><td>Installation needed?</td><td>Yes</td><td>No (browser-based)</td></tr>
+      <tr><td>Examples</td><td><code>git commit</code>, <code>git merge</code></td><td>GitHub PRs, Actions, Issues</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>Analogy:</strong> Git is the engine of your car. GitHub is the garage and road system to drive and collaborate with others.</p>
+
 
    
 
