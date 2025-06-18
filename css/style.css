@@ -88,195 +88,175 @@ form input, form textarea {
 
 /* Sidebar on the right */
 .sidebar {
-  flex: 0 0 260px; /* Fixed width */
-  background-color: #fafafa;
-  padding: 1.5rem;
-  border-left: 1px solid #e0e0e0;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  margin-left: 1.5rem;
-  font-family: 'Segoe UI', Tahoma, sans-serif;
+  flex: 1;
+  min-width: 250px;
+  background-color: #f0f0f8;
+  padding: 1rem;
+  border-left: 2px solid #ddd;
 }
-
-.sidebar h3 {
-  font-size: 1.3rem;
-  color: #333;
-  margin-bottom: 1rem;
-  border-bottom: 2px solid #ccc;
-  padding-bottom: 0.5rem;
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar ul li {
-  margin-bottom: 0.75rem;
-}
-
-
-.sidebar ul li a {
-  text-decoration: none;
-  color: #0077cc;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.sidebar ul li a:hover {
-  color: #004999;
-  text-decoration: underline;
-}
-.sidebar {
-  position: sticky;
-  top: 2rem;
-}
-
 
 /* Extra resources section at the bottom */
 .extra-resources {
-  margin: 3rem auto 2rem auto;
-  padding: 2rem;
-  background-color: #ffffff;
-  border-top: 4px solid #0077cc;
-  border-radius: 10px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-  max-width: 960px;
-  font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
-  color: #333;
+  margin: 2rem 1rem;
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border-top: 2px solid #ccc;
 }
 
-.extra-resources h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #222;
+.extra-resources h3,
+.sidebar h3 {
   margin-top: 0;
-  margin-bottom: 1.2rem;
-  border-bottom: 2px solid #e0e0e0;
-  padding-bottom: 0.6rem;
-}
-
-.extra-resources ul {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-
-.extra-resources li {
-  margin-bottom: 1rem;
-  font-size: 1.05rem;
-  line-height: 1.6;
-  position: relative;
-  padding-left: 1.5rem;
-}
-
-.extra-resources li::before {
-  content: "➤";
-  position: absolute;
-  left: 0;
-  color: #0077cc;
-  font-size: 0.9rem;
-}
-
-.extra-resources a {
-  text-decoration: none;
-  color: #005ea2;
-  font-weight: 500;
-  transition: all 0.25s ease;
-}
-
-.extra-resources a:hover {
-  color: #003e7e;
-  text-decoration: underline;
-  letter-spacing: 0.3px;
 }
 
 /* Lists */
-/* Tutorial Section Layout */
+.sidebar ul,
+.extra-resources ul {
+  list-style: none;
+  padding-left: 1rem;
+}
+
+.sidebar ul li,
+.extra-resources ul li {
+  margin: 0.5rem 0;
+}
+
+.sidebar ul li a,
+.extra-resources ul li a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.sidebar ul li a:hover,
+.extra-resources ul li a:hover {
+  text-decoration: underline;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background-color: #444;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-family: inherit;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #444;
+  min-width: 220px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 999; /* make sure it's above other elements */
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #555;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column;
+  }
+}
 .tutorial-section {
-  margin-top: 2.5rem;
-  font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+  margin-top: 2rem;
 }
 
 .tutorial-section h2 {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   color: #222;
-  font-size: 1.6rem;
-  border-bottom: 2px solid #ddd;
-  padding-bottom: 0.4rem;
 }
 
-/* Responsive Grid for Tutorial Cards */
 .tutorial-links {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1.2rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
   padding-left: 0;
   list-style: none;
-  margin: 0;
 }
 
-/* Individual Tutorial Card Styling */
 .tutorial-links li {
   background-color: #ffffff;
-  padding: 1.2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   text-align: center;
 }
 
 .tutorial-links li:hover {
   transform: translateY(-4px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
 }
 
 .tutorial-links a {
-  color: #0073e6;
-  font-weight: 600;
-  font-size: 1.05rem;
+  color: #0056b3;
+  font-weight: 500;
   text-decoration: none;
 }
 
 .tutorial-links a:hover {
   text-decoration: underline;
-  color: #004999;
+}
+.social-profiles {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem 0;
+  list-style: none;
+  flex-wrap: wrap;
 }
 
-/* Responsive Flex Handling */
-@media (max-width: 768px) {
-  .content-wrapper {
-    flex-direction: column;
-  }
-}
-/*Header*/
-
-.main-header {
-  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-  color: #fff;
-  text-align: center;
-  padding: 2rem 1rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.social-profiles li {
+  display: flex;
+  align-items: center;
 }
 
-.main-header h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin: 0;
+.social-profiles a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #0ea5e9; /* sky blue */
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
 }
 
-.main-header h1 span {
-  color: #ffcc00;
-  display: block;
-  margin-top: 0.3rem;
+.social-profiles a:hover {
+  color: #0284c7;
 }
 
-.main-header .tagline {
-  font-size: 1.2rem;
-  color: #ddd;
-  margin-top: 0.5rem;
-  font-style: italic;
+.social-profiles img {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  transition: transform 0.3s ease;
+}
+
+.social-profiles a:hover img {
+  transform: scale(1.1);
 }
 /* Main Section Headers */
 main h2 {
@@ -308,5 +288,3 @@ main h3::before {
   color: #007acc;
   font-size: 1rem;
 }
-
-
