@@ -27,6 +27,7 @@
     <a href="https://arashdeepsinghmaan.github.io/robotics_software_tutorial/ROS.html">Robotics Operating System</a>
     <a href="https://arashdeepsinghmaan.github.io/robotics_software_tutorial/cpp.html">Programming For Robotics</a>
     <a href="https://arashdeepsinghmaan.github.io/control_simulation/">Robotics Control</a>
+    <a href="https://arashdeepsinghmaan.github.io/mobile_robots/"> Mobile Robots </a>
   </div>
 </div>
       <a href="../contact.html">Contact</a>
@@ -38,33 +39,100 @@
   <div class="main-content">
     
     <h2>Interial Measurement Unit</h2>
-<p>A <strong>ROS 2 workspace</strong> is a directory that helps you organize, develop, and build your ROS 2 projects efficiently.</p>
+<section>
+    <h3>What is an IMU?</h3>
+    <p>
+      An <strong>Inertial Measurement Unit (IMU)</strong> is a sensor that measures and reports a robot’s specific force, angular rate, and sometimes magnetic field. It typically contains a combination of:
+    </p>
+    <ul>
+      <li>Accelerometer — measures linear acceleration</li>
+      <li>Gyroscope — measures angular velocity (rotation)</li>
+      <li>Magnetometer (optional) — measures orientation with respect to the Earth's magnetic field</li>
+    </ul>
+  </section>
 
-<p>For creating the workspace, follow the official documentation of ROS 2:</p>
-<a href="https://docs.ros.org/en/jazzy/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html">ROS 2 Workspace Creation Guide</a>
+  <section>
+    <h3>Why is IMU Important in Robotics?</h3>
+    <p>
+      IMUs provide essential data for understanding a robot’s motion in space. This information is crucial for:
+    </p>
+    <ul>
+      <li><strong>Orientation estimation</strong> (roll, pitch, yaw)</li>
+      <li><strong>Motion tracking</strong> during navigation or flight</li>
+      <li><strong>Sensor fusion</strong> with GPS, encoders, and cameras</li>
+      <li><strong>Stabilization</strong> for drones, quadrupeds, and mobile robots</li>
+    </ul>
+  </section>
 
-<h3>📷 This is how a typical ROS 2 workspace is structured:</h3>
-<img src="https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/workspace.png" alt="Workspace" width="80%">
+  <section>
+    <h3>Applications of IMU in Robotics</h3>
 
-<h3>📷 Let's explore the workspace</h3>
+    <h4>1. Mobile Robots</h4>
+    <p>
+      IMUs help estimate the robot's orientation and assist in localization when used with wheel encoders or LiDAR.
+    </p>
 
-<h4>Install Folder</h4>
-   
-<img src=" https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/install.png" alt="Install" width="80%">
-<p>The <strong>install/</strong> directory contains the final built packages and executables after compilation. You can run your ROS 2 nodes from here.</p>
+    <h4>2. Drones and UAVs</h4>
+    <p>
+      IMUs are essential for flight control, stabilization, and autonomous navigation.
+    </p>
 
-<h4>Build Folder</h4>
-<img src=" https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/build.png" alt="Build" width="80%">
-<p>The <strong>build/</strong> folder holds temporary files generated during compilation. This helps convert your source code into an executable format.</p>
+    <h4>3. Humanoid and Legged Robots</h4>
+    <p>
+      IMUs aid in maintaining balance, understanding body pose, and coordinating leg movement.
+    </p>
 
-<h4>Log Folder</h4>
-<img src="https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/log.png" alt="Log" width="80%">
-<p>The <strong>log/</strong> directory stores logs and debugging information from your previous runs. Check this folder to diagnose issues or review performance details.</p>
+    <h4>4. SLAM and Odometry</h4>
+    <p>
+      IMUs are fused with other sensors for improved SLAM (Simultaneous Localization and Mapping) accuracy and robustness.
+    </p>
+  </section>
 
-<h4>Source Folder</h4>
-<img src=" https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/packages.png" alt="src" width="80%">
-<p>The <strong>src/</strong> folder is where your actual code lives. This is where you place your ROS 2 packages, including nodes, launch files, and custom scripts.</p>
-<!--
+  <section>
+    <h3>IMU Data and Output</h3>
+    <p>
+      An IMU typically outputs:
+    </p>
+    <ul>
+      <li><strong>Linear acceleration:</strong> in x, y, z axes</li>
+      <li><strong>Angular velocity:</strong> in rad/s or deg/s</li>
+      <li><strong>Orientation:</strong> as Euler angles or quaternions (after integration or fusion)</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>IMU in ROS (Robot Operating System)</h3>
+    <p>
+      In ROS, IMUs publish data using the <code>sensor_msgs/Imu</code> message type. Common ROS packages and drivers include:
+    </p>
+    <ul>
+      <li><code>imu_filter_madgwick</code> — for sensor fusion</li>
+      <li><code>robot_localization</code> — for combining IMU, GPS, and odometry</li>
+      <li><code>microstrain_inertial_driver</code> — for MicroStrain IMUs</li>
+    </ul>
+    <p>
+      Tools like <code>rviz</code> can visualize IMU orientation in 3D.
+    </p>
+  </section>
+
+  <section>
+    <h3>Challenges of Using IMUs</h3>
+    <ul>
+      <li>Drift over time due to integration errors</li>
+      <li>Sensitive to mechanical vibrations</li>
+      <li>Magnetic distortion (when using magnetometers indoors)</li>
+      <li>Requires sensor fusion for accurate pose estimation</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Conclusion</h3>
+    <p>
+      IMUs are compact yet powerful sensors that play a crucial role in robotics. Whether stabilizing drones, helping mobile robots navigate, or enabling humanoid motion, IMUs provide fundamental data that make intelligent robot behavior possible. When combined with sensor fusion techniques, IMUs contribute to highly accurate and responsive robotic systems.
+    </p>
+  </section>
+
+    <!--
     <h3>▶️ Embed a YouTube Video</h3>
     <iframe width="100%" height="315" src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID"
             title="YouTube video" frameborder="0" allowfullscreen></iframe>

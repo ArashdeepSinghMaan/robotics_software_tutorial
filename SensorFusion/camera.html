@@ -27,6 +27,7 @@
     <a href="https://arashdeepsinghmaan.github.io/robotics_software_tutorial/ROS.html">Robotics Operating System</a>
     <a href="https://arashdeepsinghmaan.github.io/robotics_software_tutorial/cpp.html">Programming For Robotics</a>
     <a href="https://arashdeepsinghmaan.github.io/control_simulation/">Robotics Control</a>
+    <a href="https://arashdeepsinghmaan.github.io/mobile_robots/"> Mobile Robots </a>
   </div>
 </div>
       <a href="../contact.html">Contact</a>
@@ -37,34 +38,103 @@
 <main class="content-wrapper">
   <div class="main-content">
     
-    <h2>Camera</h2>
-<p>A <strong>ROS 2 workspace</strong> is a directory that helps you organize, develop, and build your ROS 2 projects efficiently.</p>
+    <h2>Camera in Robotics</h2>
+    <section>
+    <h3>Introduction</h3>
+    <p>
+      Cameras are critical sensors in modern robotics, enabling machines to see and interpret the visual world. They are used for tasks such as <strong>object recognition, mapping, navigation, localization, and manipulation</strong>. Cameras provide rich visual data that, when processed with computer vision algorithms, significantly enhance a robot's capabilities.
+    </p>
+  </section>
 
-<p>For creating the workspace, follow the official documentation of ROS 2:</p>
-<a href="https://docs.ros.org/en/jazzy/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html">ROS 2 Workspace Creation Guide</a>
+  <section>
+    <h3>Types of Cameras Used in Robotics</h3>
 
-<h3>📷 This is how a typical ROS 2 workspace is structured:</h3>
-<img src="https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/workspace.png" alt="Workspace" width="80%">
+    <h4>1. Monocular Cameras</h4>
+    <p>
+      A single standard camera capturing 2D images. It’s lightweight and affordable but lacks depth information. Used in simple visual tracking and classification tasks.
+    </p>
 
-<h3>📷 Let's explore the workspace</h3>
+    <h4>2. Stereo Cameras</h4>
+    <p>
+      Two cameras placed at a known distance apart to estimate depth through disparity. Used for 3D vision and obstacle detection.
+    </p>
 
-<h4>Install Folder</h4>
-   
-<img src=" https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/install.png" alt="Install" width="80%">
-<p>The <strong>install/</strong> directory contains the final built packages and executables after compilation. You can run your ROS 2 nodes from here.</p>
+    <h4>3. RGB-D Cameras</h4>
+    <p>
+      These cameras provide both RGB (color) and depth information using infrared projection or structured light. Examples include Intel RealSense and Microsoft Kinect.
+    </p>
 
-<h4>Build Folder</h4>
-<img src=" https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/build.png" alt="Build" width="80%">
-<p>The <strong>build/</strong> folder holds temporary files generated during compilation. This helps convert your source code into an executable format.</p>
+    <h4>4. Fisheye and Omnidirectional Cameras</h4>
+    <p>
+      Provide a wide field of view, often used in SLAM and surveillance applications.
+    </p>
 
-<h4>Log Folder</h4>
-<img src="https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/log.png" alt="Log" width="80%">
-<p>The <strong>log/</strong> directory stores logs and debugging information from your previous runs. Check this folder to diagnose issues or review performance details.</p>
+    <h4>5. Event Cameras</h4>
+    <p>
+      Capture pixel-level intensity changes over time, enabling high-speed and low-latency vision, useful for dynamic environments.
+    </p>
+  </section>
 
-<h4>Source Folder</h4>
-<img src=" https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/packages.png" alt="src" width="80%">
-<p>The <strong>src/</strong> folder is where your actual code lives. This is where you place your ROS 2 packages, including nodes, launch files, and custom scripts.</p>
-<!--
+  <section>
+    <h3>Applications of Cameras in Robotics</h3>
+
+    <h4>1. Visual SLAM (Simultaneous Localization and Mapping)</h4>
+    <p>
+      Robots use cameras to build a map of their environment while simultaneously tracking their own position in real time.
+    </p>
+
+    <h4>2. Object Detection and Recognition</h4>
+    <p>
+      Cameras allow robots to detect, classify, and track objects using machine learning and deep learning techniques.
+    </p>
+
+    <h4>3. Navigation and Obstacle Avoidance</h4>
+    <p>
+      Visual input helps robots avoid obstacles, follow lanes, and detect pathways.
+    </p>
+
+    <h4>4. Robotic Manipulation</h4>
+    <p>
+      In industrial settings, cameras guide robotic arms to pick, place, and assemble components accurately.
+    </p>
+
+    <h4>5. Human-Robot Interaction</h4>
+    <p>
+      Face and gesture recognition via camera input enables more intuitive interaction between robots and humans.
+    </p>
+  </section>
+
+  <section>
+    <h3>Camera Integration with ROS (Robot Operating System)</h3>
+    <p>
+      In ROS, camera data is published using <code>sensor_msgs/Image</code> and <code>camera_info</code> topics. Common camera drivers include:
+    </p>
+    <ul>
+      <li><code>usb_cam</code>: For generic USB cameras</li>
+      <li><code>cv_camera</code>: OpenCV-based image capture</li>
+      <li><code>realsense2_camera</code>: For Intel RealSense RGB-D cameras</li>
+      <li><code>zed_ros_wrapper</code>: For Stereolabs ZED stereo cameras</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Challenges</h3>
+    <ul>
+      <li>High computational cost for real-time image processing</li>
+      <li>Lighting and shadows can affect accuracy</li>
+      <li>Calibration and lens distortion need careful handling</li>
+      <li>Limited depth information in monocular systems</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Conclusion</h3>
+    <p>
+      Cameras play a vital role in giving robots the ability to perceive and understand their surroundings. By combining camera data with intelligent algorithms and other sensors, robots can navigate complex environments, interact with humans, and perform a wide variety of tasks with increasing autonomy.
+    </p>
+  </section>
+
+    <!--
     <h3>▶️ Embed a YouTube Video</h3>
     <iframe width="100%" height="315" src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID"
             title="YouTube video" frameborder="0" allowfullscreen></iframe>

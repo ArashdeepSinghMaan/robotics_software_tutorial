@@ -27,6 +27,7 @@
     <a href="https://arashdeepsinghmaan.github.io/robotics_software_tutorial/ROS.html">Robotics Operating System</a>
     <a href="https://arashdeepsinghmaan.github.io/robotics_software_tutorial/cpp.html">Programming For Robotics</a>
     <a href="https://arashdeepsinghmaan.github.io/control_simulation/">Robotics Control</a>
+    <a href="https://arashdeepsinghmaan.github.io/mobile_robots/"> Mobile Robots </a>
   </div>
 </div>
       <a href="../contact.html">Contact</a>
@@ -38,33 +39,87 @@
   <div class="main-content">
     
     <h2>Particle Filter</h2>
-<p>A <strong>ROS 2 workspace</strong> is a directory that helps you organize, develop, and build your ROS 2 projects efficiently.</p>
+      <section>
+    <h3>Introduction</h3>
+    <p>
+      The <strong>Particle Filter</strong> (also known as Monte Carlo Localization or MCL) is a probabilistic algorithm used in robotics to estimate the state of a robot (typically its position and orientation) in an uncertain environment. It is particularly well-suited for non-linear, non-Gaussian problems and is widely used in <strong>localization</strong> and <strong>SLAM</strong>.
+    </p>
+  </section>
 
-<p>For creating the workspace, follow the official documentation of ROS 2:</p>
-<a href="https://docs.ros.org/en/jazzy/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html">ROS 2 Workspace Creation Guide</a>
+  <section>
+    <h3>How Particle Filters Work</h3>
+    <p>
+      Particle filters represent a probability distribution using a set of samples called <strong>particles</strong>. Each particle represents a possible state of the robot and has a weight indicating how likely it is to represent the true state.
+    </p>
 
-<h3>📷 This is how a typical ROS 2 workspace is structured:</h3>
-<img src="https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/workspace.png" alt="Workspace" width="80%">
+    <h4>Algorithm Steps:</h4>
+    <ol>
+      <li><strong>Initialization:</strong> Generate a set of particles across the state space.</li>
+      <li><strong>Prediction:</strong> Move each particle based on control inputs and a motion model.</li>
+      <li><strong>Update:</strong> Adjust each particle’s weight using sensor data and a measurement model.</li>
+      <li><strong>Resampling:</strong> Resample particles based on weights to focus on the most likely states.</li>
+    </ol>
+  </section>
 
-<h3>📷 Let's explore the workspace</h3>
+  <section>
+    <h3>Applications in Robotics</h3>
 
-<h4>Install Folder</h4>
-   
-<img src=" https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/install.png" alt="Install" width="80%">
-<p>The <strong>install/</strong> directory contains the final built packages and executables after compilation. You can run your ROS 2 nodes from here.</p>
+    <h4>1. Monte Carlo Localization (MCL)</h4>
+    <p>
+      The particle filter is commonly used to localize a mobile robot within a known map. Each particle represents a possible position and orientation on the map.
+    </p>
 
-<h4>Build Folder</h4>
-<img src=" https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/build.png" alt="Build" width="80%">
-<p>The <strong>build/</strong> folder holds temporary files generated during compilation. This helps convert your source code into an executable format.</p>
+    <h4>2. SLAM (Simultaneous Localization and Mapping)</h4>
+    <p>
+      Particle filters are used to estimate both the robot’s pose and the map, particularly in approaches like FastSLAM.
+    </p>
 
-<h4>Log Folder</h4>
-<img src="https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/log.png" alt="Log" width="80%">
-<p>The <strong>log/</strong> directory stores logs and debugging information from your previous runs. Check this folder to diagnose issues or review performance details.</p>
+    <h4>3. Object Tracking</h4>
+    <p>
+      Particle filters are used to track moving objects in a robot’s environment, such as people or dynamic obstacles.
+    </p>
+  </section>
 
-<h4>Source Folder</h4>
-<img src=" https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/packages.png" alt="src" width="80%">
-<p>The <strong>src/</strong> folder is where your actual code lives. This is where you place your ROS 2 packages, including nodes, launch files, and custom scripts.</p>
-<!--
+  <section>
+    <h3>Advantages</h3>
+    <ul>
+      <li>Handles non-linear and non-Gaussian systems well</li>
+      <li>Works with multi-modal distributions (multiple possible locations)</li>
+      <li>Can incorporate arbitrary motion and sensor models</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Limitations</h3>
+    <ul>
+      <li>Requires many particles for accuracy in large environments</li>
+      <li>Computationally expensive, especially with complex sensor models</li>
+      <li>May lose track if resampling discards correct particles</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Particle Filter in ROS</h3>
+    <p>
+      ROS provides robust implementations of particle filters for localization:
+    </p>
+    <ul>
+      <li><code>amcl</code> (Adaptive Monte Carlo Localization): used in <code>navigation</code> stack for 2D localization.</li>
+      <li><code>gmapping</code>: SLAM package using particle filters to build a map while localizing.</li>
+    </ul>
+    <p>
+      These packages use laser scan data, odometry, and a motion model to update the particle filter in real-time.
+    </p>
+  </section>
+
+  <section>
+    <h3>Conclusion</h3>
+    <p>
+      Particle filters are powerful tools in robotics for estimating uncertain states in real-time. Despite their computational demands, they are highly effective in real-world environments, making them a key component in mobile robot localization and SLAM systems.
+    </p>
+  </section>
+
+    <!--
     <h3>▶️ Embed a YouTube Video</h3>
     <iframe width="100%" height="315" src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID"
             title="YouTube video" frameborder="0" allowfullscreen></iframe>

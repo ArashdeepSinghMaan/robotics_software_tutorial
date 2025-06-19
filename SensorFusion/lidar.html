@@ -27,6 +27,7 @@
     <a href="https://arashdeepsinghmaan.github.io/robotics_software_tutorial/ROS.html">Robotics Operating System</a>
     <a href="https://arashdeepsinghmaan.github.io/robotics_software_tutorial/cpp.html">Programming For Robotics</a>
     <a href="https://arashdeepsinghmaan.github.io/control_simulation/">Robotics Control</a>
+    <a href="https://arashdeepsinghmaan.github.io/mobile_robots/"> Mobile Robots </a>
   </div>
 </div>
       <a href="../contact.html">Contact</a>
@@ -38,33 +39,106 @@
   <div class="main-content">
     
     <h2>Lidar</h2>
-<p>A <strong>ROS 2 workspace</strong> is a directory that helps you organize, develop, and build your ROS 2 projects efficiently.</p>
+     <section>
+    <h3>What is LiDAR?</h3>
+    <p>
+      <strong>LiDAR</strong> (Light Detection and Ranging) is a remote sensing method that uses laser light to measure distances to objects. In robotics, LiDAR is widely used for <strong>mapping, obstacle detection, localization, and navigation</strong> due to its high precision and reliability.
+    </p>
+  </section>
 
-<p>For creating the workspace, follow the official documentation of ROS 2:</p>
-<a href="https://docs.ros.org/en/jazzy/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html">ROS 2 Workspace Creation Guide</a>
+  <section>
+    <h3>How LiDAR Works</h3>
+    <p>
+      LiDAR sensors emit laser pulses and measure the time it takes for each pulse to return after hitting an object. Using this time-of-flight information, the distance to the object is calculated. By rotating the laser or using multiple beams, LiDAR generates a 2D or 3D point cloud of the environment.
+    </p>
+  </section>
 
-<h3>📷 This is how a typical ROS 2 workspace is structured:</h3>
-<img src="https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/workspace.png" alt="Workspace" width="80%">
+  <section>
+    <h3>Types of LiDAR in Robotics</h3>
 
-<h3>📷 Let's explore the workspace</h3>
+    <h4>1. 2D LiDAR</h4>
+    <p>
+      Scans in a single horizontal plane. Commonly used in mobile robots for obstacle avoidance and 2D SLAM (Simultaneous Localization and Mapping).
+    </p>
 
-<h4>Install Folder</h4>
-   
-<img src=" https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/install.png" alt="Install" width="80%">
-<p>The <strong>install/</strong> directory contains the final built packages and executables after compilation. You can run your ROS 2 nodes from here.</p>
+    <h4>2. 3D LiDAR</h4>
+    <p>
+      Scans in multiple directions or layers to generate a 3D representation of the environment. Often used in autonomous cars, drones, and complex mapping applications.
+    </p>
 
-<h4>Build Folder</h4>
-<img src=" https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/build.png" alt="Build" width="80%">
-<p>The <strong>build/</strong> folder holds temporary files generated during compilation. This helps convert your source code into an executable format.</p>
+    <h4>3. Solid-State LiDAR</h4>
+    <p>
+      Uses no moving parts, making it more compact and durable. Gaining popularity in robotic systems due to lower cost and reliability.
+    </p>
+  </section>
 
-<h4>Log Folder</h4>
-<img src="https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/log.png" alt="Log" width="80%">
-<p>The <strong>log/</strong> directory stores logs and debugging information from your previous runs. Check this folder to diagnose issues or review performance details.</p>
+  <section>
+    <h3>Applications of LiDAR in Robotics</h3>
 
-<h4>Source Folder</h4>
-<img src=" https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/packages.png" alt="src" width="80%">
-<p>The <strong>src/</strong> folder is where your actual code lives. This is where you place your ROS 2 packages, including nodes, launch files, and custom scripts.</p>
-<!--
+    <h4>1. Mapping and SLAM</h4>
+    <p>
+      LiDAR provides accurate distance data for building maps and localizing robots in unknown environments using SLAM algorithms.
+    </p>
+
+    <h4>2. Obstacle Detection and Avoidance</h4>
+    <p>
+      Real-time LiDAR scans allow robots to detect obstacles in their path and navigate around them safely.
+    </p>
+
+    <h4>3. Autonomous Navigation</h4>
+    <p>
+      Autonomous ground vehicles and drones use LiDAR to perceive their surroundings and plan paths accordingly.
+    </p>
+
+    <h4>4. Terrain Modeling</h4>
+    <p>
+      LiDAR is used in agricultural and planetary robots to model terrain for mobility planning and scientific analysis.
+    </p>
+  </section>
+
+  <section>
+    <h3>LiDAR in ROS (Robot Operating System)</h3>
+    <p>
+      In ROS, LiDAR data is typically published as a <code>sensor_msgs/LaserScan</code> or <code>sensor_msgs/PointCloud2</code> message. Common ROS drivers include:
+    </p>
+    <ul>
+      <li><code>urg_node</code> - For Hokuyo 2D LiDARs</li>
+      <li><code>rplidar_ros</code> - For RPLIDAR series</li>
+      <li><code>velodyne_driver</code> - For 3D Velodyne LiDARs</li>
+      <li><code>ouster_ros</code> - For Ouster LiDARs</li>
+    </ul>
+    <p>
+      Tools like <code>rviz</code> and <code>rqt</code> are commonly used to visualize LiDAR data in ROS.
+    </p>
+  </section>
+
+  <section>
+    <h3>Advantages</h3>
+    <ul>
+      <li>High-precision distance measurements</li>
+      <li>Works in low light or complete darkness</li>
+      <li>Fast update rate (real-time sensing)</li>
+      <li>Reliable in structured and unstructured environments</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Limitations</h3>
+    <ul>
+      <li>Performance can degrade in rain, fog, or dusty conditions</li>
+      <li>More expensive than some other sensors like ultrasonic or cameras</li>
+      <li>Data can be dense and require significant processing power</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Conclusion</h3>
+    <p>
+      LiDAR is a powerful and essential sensor in modern robotics, enabling robots to perceive and interact with the world around them with high accuracy. Whether for indoor navigation, outdoor mapping, or autonomous driving, LiDAR continues to be a foundational technology in robotic perception.
+    </p>
+  </section>
+
+    <!--
     <h3>▶️ Embed a YouTube Video</h3>
     <iframe width="100%" height="315" src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID"
             title="YouTube video" frameborder="0" allowfullscreen></iframe>

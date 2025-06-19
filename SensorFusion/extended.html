@@ -27,6 +27,7 @@
     <a href="https://arashdeepsinghmaan.github.io/robotics_software_tutorial/ROS.html">Robotics Operating System</a>
     <a href="https://arashdeepsinghmaan.github.io/robotics_software_tutorial/cpp.html">Programming For Robotics</a>
     <a href="https://arashdeepsinghmaan.github.io/control_simulation/">Robotics Control</a>
+    <a href="https://arashdeepsinghmaan.github.io/mobile_robots/"> Mobile Robots </a>
   </div>
 </div>
       <a href="../contact.html">Contact</a>
@@ -38,32 +39,101 @@
   <div class="main-content">
     
     <h2>Extended Kalman Filter</h2>
-<p>A <strong>ROS 2 workspace</strong> is a directory that helps you organize, develop, and build your ROS 2 projects efficiently.</p>
+<section>
+    <h3>Introduction</h3>
+    <p>
+      The Extended Kalman Filter (EKF) is a popular algorithm used in robotics for state estimation. It is an extension of the Kalman Filter, designed to handle <strong>nonlinear systems</strong>, which are common in robotic applications such as localization, sensor fusion, and SLAM (Simultaneous Localization and Mapping).
+    </p>
+  </section>
 
-<p>For creating the workspace, follow the official documentation of ROS 2:</p>
-<a href="https://docs.ros.org/en/jazzy/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html">ROS 2 Workspace Creation Guide</a>
+  <section>
+    <h3>Why Use EKF in Robotics?</h3>
+    <p>
+      In robotics, many models of motion and sensors are nonlinear. EKF allows robots to:
+    </p>
+    <ul>
+      <li>Estimate their position and velocity from noisy sensor data</li>
+      <li>Fuse data from multiple sensors like GPS, IMU, and wheel encoders</li>
+      <li>Handle real-world uncertainty and noise in dynamic environments</li>
+    </ul>
+  </section>
 
-<h3>📷 This is how a typical ROS 2 workspace is structured:</h3>
-<img src="https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/workspace.png" alt="Workspace" width="80%">
+  <section>
+    <h3>EKF Algorithm Overview</h3>
+    <h4>1. Prediction Step</h4>
+    <p>
+      Uses the motion model to predict the new state and covariance:
+    </p>
+    <pre>
+x̂ₖ⁻ = f(x̂ₖ₋₁, uₖ)
+Pₖ⁻ = FₖPₖ₋₁Fₖᵀ + Q
+    </pre>
+    <ul>
+      <li><code>f()</code>: nonlinear motion model</li>
+      <li><code>Fₖ</code>: Jacobian of f() with respect to state</li>
+      <li><code>Q</code>: process noise covariance</li>
+    </ul>
 
-<h3>📷 Let's explore the workspace</h3>
+    <h4>2. Update Step</h4>
+    <p>
+      Uses the measurement to correct the prediction:
+    </p>
+    <pre>
+Kₖ = Pₖ⁻Hₖᵀ(HₖPₖ⁻Hₖᵀ + R)⁻¹
+x̂ₖ = x̂ₖ⁻ + Kₖ(zₖ - h(x̂ₖ⁻))
+Pₖ = (I - KₖHₖ)Pₖ⁻
+    </pre>
+    <ul>
+      <li><code>h()</code>: nonlinear measurement model</li>
+      <li><code>Hₖ</code>: Jacobian of h() with respect to state</li>
+      <li><code>R</code>: measurement noise covariance</li>
+    </ul>
+  </section>
 
-<h4>Install Folder</h4>
-   
-<img src=" https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/install.png" alt="Install" width="80%">
-<p>The <strong>install/</strong> directory contains the final built packages and executables after compilation. You can run your ROS 2 nodes from here.</p>
+  <section>
+    <h3>Applications in Robotics</h3>
 
-<h4>Build Folder</h4>
-<img src=" https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/build.png" alt="Build" width="80%">
-<p>The <strong>build/</strong> folder holds temporary files generated during compilation. This helps convert your source code into an executable format.</p>
+    <h4>1. Mobile Robot Localization</h4>
+    <p>
+      EKF helps a robot determine its position and orientation (pose) by fusing odometry and GPS/IMU data.
+    </p>
 
-<h4>Log Folder</h4>
-<img src="https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/log.png" alt="Log" width="80%">
-<p>The <strong>log/</strong> directory stores logs and debugging information from your previous runs. Check this folder to diagnose issues or review performance details.</p>
+    <h4>2. SLAM (Simultaneous Localization and Mapping)</h4>
+    <p>
+      EKF is widely used in SLAM to estimate both the robot's pose and the map of the environment using landmarks.
+    </p>
 
-<h4>Source Folder</h4>
-<img src=" https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/packages.png" alt="src" width="80%">
-<p>The <strong>src/</strong> folder is where your actual code lives. This is where you place your ROS 2 packages, including nodes, launch files, and custom scripts.</p>
+    <h4>3. Sensor Fusion</h4>
+    <p>
+      EKF combines data from multiple sensors such as cameras, LiDAR, IMU, and GPS to produce accurate state estimates.
+    </p>
+  </section>
+
+  <section>
+    <h3>Advantages</h3>
+    <ul>
+      <li>Efficient for real-time applications</li>
+      <li>Can handle nonlinear systems through linear approximations</li>
+      <li>Well-understood and widely used in robotics</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Limitations</h3>
+    <ul>
+      <li>Linearization errors can lead to divergence in highly nonlinear systems</li>
+      <li>Requires accurate models and Jacobians</li>
+      <li>Not optimal for all types of non-Gaussian noise</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Conclusion</h3>
+    <p>
+      The Extended Kalman Filter remains a fundamental tool in the robotics toolbox for real-time state estimation and sensor fusion. Despite the rise of more advanced methods like the Unscented Kalman Filter (UKF) and Particle Filter, EKF remains a practical and widely-used solution for many robotic systems.
+    </p>
+  </section>
+
 <!--
     <h3>▶️ Embed a YouTube Video</h3>
     <iframe width="100%" height="315" src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID"

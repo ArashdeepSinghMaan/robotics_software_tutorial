@@ -27,6 +27,7 @@
     <a href="https://arashdeepsinghmaan.github.io/robotics_software_tutorial/ROS.html">Robotics Operating System</a>
     <a href="https://arashdeepsinghmaan.github.io/robotics_software_tutorial/cpp.html">Programming For Robotics</a>
     <a href="https://arashdeepsinghmaan.github.io/control_simulation/">Robotics Control</a>
+    <a href="https://arashdeepsinghmaan.github.io/mobile_robots/"> Mobile Robots </a>
   </div>
 </div>
       <a href="../contact.html">Contact</a>
@@ -38,32 +39,74 @@
   <div class="main-content">
     
     <h2>Temperature Sensor</h2>
-<p>A <strong>ROS 2 workspace</strong> is a directory that helps you organize, develop, and build your ROS 2 projects efficiently.</p>
+    <section>
+    <h3>What is a Temperature Sensor?</h3>
+    <p>
+      A temperature sensor is a device that measures the amount of heat energy in a system or environment, allowing it to detect temperature changes. It converts thermal energy into electrical signals for monitoring and control.
+    </p>
+  </section>
 
-<p>For creating the workspace, follow the official documentation of ROS 2:</p>
-<a href="https://docs.ros.org/en/jazzy/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html">ROS 2 Workspace Creation Guide</a>
+  <section>
+    <h3>Types of Temperature Sensors</h3>
 
-<h3>📷 This is how a typical ROS 2 workspace is structured:</h3>
-<img src="https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/workspace.png" alt="Workspace" width="80%">
+    <h4>1. Thermocouples</h4>
+    <p>
+      Thermocouples are made of two different metals joined at one end. They generate a voltage proportional to the temperature difference. They are rugged and suitable for high-temperature applications.
+    </p>
 
-<h3>📷 Let's explore the workspace</h3>
+    <h4>2. Resistance Temperature Detectors (RTDs)</h4>
+    <p>
+      RTDs change resistance with temperature and provide accurate, stable measurements over a wide range. They are typically made of platinum.
+    </p>
 
-<h4>Install Folder</h4>
-   
-<img src=" https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/install.png" alt="Install" width="80%">
-<p>The <strong>install/</strong> directory contains the final built packages and executables after compilation. You can run your ROS 2 nodes from here.</p>
+    <h4>3. Thermistors</h4>
+    <p>
+      Thermistors are made of ceramic materials and exhibit a large change in resistance with a small temperature change. They are highly sensitive and ideal for precise temperature measurements.
+    </p>
 
-<h4>Build Folder</h4>
-<img src=" https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/build.png" alt="Build" width="80%">
-<p>The <strong>build/</strong> folder holds temporary files generated during compilation. This helps convert your source code into an executable format.</p>
+    <h4>4. Semiconductor Sensors</h4>
+    <p>
+      These sensors use ICs (integrated circuits) and output analog or digital signals. They are compact, low-cost, and commonly used in consumer electronics.
+    </p>
+  </section>
 
-<h4>Log Folder</h4>
-<img src="https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/log.png" alt="Log" width="80%">
-<p>The <strong>log/</strong> directory stores logs and debugging information from your previous runs. Check this folder to diagnose issues or review performance details.</p>
+  <section>
+    <h3>Working Principle</h3>
+    <p>
+      Most temperature sensors work by detecting changes in physical properties like voltage, resistance, or current, which vary with temperature. These changes are then calibrated and converted into readable values.
+    </p>
+  </section>
 
-<h4>Source Folder</h4>
-<img src=" https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/packages.png" alt="src" width="80%">
-<p>The <strong>src/</strong> folder is where your actual code lives. This is where you place your ROS 2 packages, including nodes, launch files, and custom scripts.</p>
+  <section>
+    <h3>Applications</h3>
+
+    <h4>1. Industrial Automation</h4>
+    <p>
+      Used to monitor machinery temperatures to prevent overheating and optimize performance.
+    </p>
+
+    <h4>2. HVAC Systems</h4>
+    <p>
+      Used to regulate heating, ventilation, and air conditioning systems in buildings.
+    </p>
+
+    <h4>3. Medical Equipment</h4>
+    <p>
+      Used in devices like thermometers, incubators, and body temperature monitors.
+    </p>
+
+    <h4>4. Consumer Electronics</h4>
+    <p>
+      Found in smartphones, laptops, and other gadgets to monitor internal temperature and prevent damage.
+    </p>
+  </section>
+
+  <section>
+    <h3>Conclusion</h3>
+    <p>
+      Temperature sensors are vital components in both industrial and everyday applications. Their ability to detect and respond to thermal changes makes them indispensable in modern technology.
+    </p>
+  </section>
 <!--
     <h3>▶️ Embed a YouTube Video</h3>
     <iframe width="100%" height="315" src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID"

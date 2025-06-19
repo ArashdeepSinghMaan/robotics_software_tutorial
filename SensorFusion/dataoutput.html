@@ -27,6 +27,7 @@
     <a href="https://arashdeepsinghmaan.github.io/robotics_software_tutorial/ROS.html">Robotics Operating System</a>
     <a href="https://arashdeepsinghmaan.github.io/robotics_software_tutorial/cpp.html">Programming For Robotics</a>
     <a href="https://arashdeepsinghmaan.github.io/control_simulation/">Robotics Control</a>
+    <a href="https://arashdeepsinghmaan.github.io/mobile_robots/"> Mobile Robots </a>
   </div>
 </div>
       <a href="../contact.html">Contact</a>
@@ -37,34 +38,99 @@
 <main class="content-wrapper">
   <div class="main-content">
     
-    <h2>Data Output</h2>
-<p>A <strong>ROS 2 workspace</strong> is a directory that helps you organize, develop, and build your ROS 2 projects efficiently.</p>
+    <h2>Data Output from Sensors</h2>
+    <section>
+    <h3>Overview</h3>
+    <p>
+      Sensors in robotics produce raw or processed data in specific formats. Understanding these formats is essential for integrating and processing sensor data within robotic systems. The format can depend on the sensor type, communication protocol, and software stack (e.g., ROS).
+    </p>
+  </section>
 
-<p>For creating the workspace, follow the official documentation of ROS 2:</p>
-<a href="https://docs.ros.org/en/jazzy/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html">ROS 2 Workspace Creation Guide</a>
+  <section>
+    <h3>Common Data Output Formats</h3>
 
-<h3>📷 This is how a typical ROS 2 workspace is structured:</h3>
-<img src="https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/workspace.png" alt="Workspace" width="80%">
+    <h4>1. Numeric Arrays</h4>
+    <p>
+      Many sensors output data as arrays of numerical values. For example:
+      <ul>
+        <li>IMU: [ax, ay, az, gx, gy, gz]</li>
+        <li>Magnetometer: [mx, my, mz]</li>
+        <li>GPS: [latitude, longitude, altitude]</li>
+      </ul>
+    </p>
 
-<h3>📷 Let's explore the workspace</h3>
+    <h4>2. Strings (Text)</h4>
+    <p>
+      Some sensors, such as GPS receivers, output data as ASCII strings, often using protocols like NMEA. Example:
+      <code>$GPGGA,123519,4807.038,N,01131.000,E,1,08,0.9,545.4,M,46.9,M,,*47</code>
+    </p>
 
-<h4>Install Folder</h4>
-   
-<img src=" https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/install.png" alt="Install" width="80%">
-<p>The <strong>install/</strong> directory contains the final built packages and executables after compilation. You can run your ROS 2 nodes from here.</p>
+    <h4>3. Bitfields / Binary Formats</h4>
+    <p>
+      High-speed sensors (e.g., cameras or LiDARs) may output data in binary formats for efficiency. These formats require decoding based on sensor datasheets.
+    </p>
 
-<h4>Build Folder</h4>
-<img src=" https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/build.png" alt="Build" width="80%">
-<p>The <strong>build/</strong> folder holds temporary files generated during compilation. This helps convert your source code into an executable format.</p>
+    <h4>4. JSON / XML</h4>
+    <p>
+      Smart or IoT-enabled sensors may send data in human-readable formats like JSON:
+      <code>{ "temperature": 24.5, "unit": "C" }</code>
+    </p>
 
-<h4>Log Folder</h4>
-<img src="https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/log.png" alt="Log" width="80%">
-<p>The <strong>log/</strong> directory stores logs and debugging information from your previous runs. Check this folder to diagnose issues or review performance details.</p>
+    <h4>5. ROS Messages</h4>
+    <p>
+      In ROS-based systems, sensor data is encapsulated in standard message types:
+      <ul>
+        <li><code>sensor_msgs/Imu</code> for IMUs</li>
+        <li><code>sensor_msgs/LaserScan</code> for 2D LiDAR</li>
+        <li><code>sensor_msgs/NavSatFix</code> for GPS</li>
+        <li><code>sensor_msgs/Image</code> for camera frames</li>
+        <li><code>sensor_msgs/PointCloud2</code> for 3D LiDAR</li>
+      </ul>
+    </p>
+  </section>
 
-<h4>Source Folder</h4>
-<img src=" https://raw.githubusercontent.com/ArashdeepSinghMaan/robotics_software_tutorial/6eb42d0e51cf1065fdfae4a20b1608b1c291ec3c/ROS/Images/packages.png" alt="src" width="80%">
-<p>The <strong>src/</strong> folder is where your actual code lives. This is where you place your ROS 2 packages, including nodes, launch files, and custom scripts.</p>
-<!--
+  <section>
+    <h3>Timestamping and Synchronization</h3>
+    <p>
+      Most sensor outputs include a timestamp or require one to be added for data synchronization. This is crucial in multi-sensor fusion applications (e.g., SLAM, sensor fusion with Kalman filters).
+    </p>
+  </section>
+
+  <section>
+    <h3>Units and Scaling</h3>
+    <p>
+      Sensor outputs must be interpreted with correct units:
+      <ul>
+        <li>Accelerometers: m/s² or g</li>
+        <li>Gyroscopes: rad/s or deg/s</li>
+        <li>Distances: meters or millimeters</li>
+      </ul>
+      Some sensors may require scaling factors based on calibration or configuration.
+    </p>
+  </section>
+
+  <section>
+    <h3>Real-Time Considerations</h3>
+    <p>
+      Sensor output rates vary significantly:
+      <ul>
+        <li>IMU: 100–1000 Hz</li>
+        <li>LiDAR: 5–20 Hz</li>
+        <li>GPS: 1–10 Hz</li>
+        <li>Cameras: 30–60 FPS</li>
+      </ul>
+      Understanding output frequency and data size is key for real-time processing and bandwidth management.
+    </p>
+  </section>
+
+  <section>
+    <h3>Conclusion</h3>
+    <p>
+      Different sensors produce data in diverse formats tailored to their application and design. Roboticists must understand these output formats to interpret, process, and fuse sensor data efficiently for accurate perception and decision-making.
+    </p>
+  </section>
+
+    <!--
     <h3>▶️ Embed a YouTube Video</h3>
     <iframe width="100%" height="315" src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID"
             title="YouTube video" frameborder="0" allowfullscreen></iframe>
