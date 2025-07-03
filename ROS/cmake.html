@@ -41,6 +41,174 @@
 
 <main class="content-wrapper">
   <div class="main-content">
+    <h2>Build System</h2>
+    A build system is a set of tools and processes that automate the creation of executable programs (or libraries) from source code. In simple terms:
+
+A build system takes your code and turns it into something that can run.
+    🔧 What a Build System Does
+When you write code in C++ or any compiled language, you don’t run .cpp files directly. Instead, you need to:
+
+Compile source files (.cpp) into object files (.o).
+
+Link object files into a binary or library.
+
+Manage dependencies, so only the changed parts are rebuilt.
+
+Run extra tasks like code generation, testing, or installation.
+
+A build system automates all this, ensuring it's done in the right order with the right flags and dependencies.
+
+🧱 Common Components of a Build System
+Build Scripts: Define what to build and how (e.g., CMakeLists.txt, Makefile).
+
+Compiler Commands: Automatically generated and run (g++, clang++, etc.).
+
+Dependency Management: Tracks what needs to be rebuilt if something changes.
+
+Configuration: Allows you to build for different systems, settings, or targets (Debug vs Release).
+
+📦 Why ROS2 Uses CMake
+ROS2 is built in C++ (mostly), and:
+
+CMake is cross-platform (works on Linux, Windows, macOS).
+
+It is widely supported, with good tools and ecosystem.
+
+CMake is modular, letting you define targets, dependencies, and installation steps.
+
+ROS2 uses ament_cmake, an extension of CMake for ROS-specific workflows (like installing packages, generating message headers, etc.).
+
+
+    🧠 Key Idea:
+CMake in ROS2 is not just for compiling C++ code — it's also used to manage the overall build system and installation process, even for Python packages.
+    Here's Why CMake (via ament_cmake) Is Still Used:
+✅ 1. Unified Build and Install System
+ROS2 uses colcon (build tool) + ament (build system) to handle both C++ and Python packages in a uniform way. Even for Python:
+
+You still want to install the package, set up paths, and generate ROS2-specific files like:
+
+Interfaces (.msg, .srv)
+
+Launch files
+
+Resource indexes
+
+Setup scripts
+
+CMake and its extensions (like ament_cmake) help orchestrate that.
+
+✅ 2. Generate and Install ROS2 Artifacts
+Even a Python node might need:
+
+Custom message/service types (.msg, .srv) → these still require CMake to generate headers and interfaces.
+
+Automatic resource indexing (e.g., package.xml, launch files).
+
+Creating the install space for use with ros2 run or ros2 launch.
+
+🐍 Python Packages Specifically Use ament_python
+While C++ packages use ament_cmake, Python packages use:
+
+🧩 ament_python
+This works with setup.py and tells the ROS2 build system how to:
+
+Install Python code
+
+Create entry points for executables
+
+Register the package in the ROS2 environment
+
+But still — CMake is the underlying mechanism that colcon uses to build the workspace and organize dependencies.
+    Great question! Let's clarify these key tools used in the **ROS 2 build system**:
+
+---
+
+## 🔧 TL;DR:
+
+| Tool       | Purpose                                                                   | Related to CMake?                                |
+| ---------- | ------------------------------------------------------------------------- | ------------------------------------------------ |
+| **CMake**  | Build tool for compiling C++ code and generating binaries                 | Yes – base-level tool                            |
+| **ament**  | ROS 2's build system for packaging, installing, and handling dependencies | Built **on top of CMake** or Python (`setup.py`) |
+| **colcon** | ROS 2’s workspace-level build tool – builds multiple packages together    | Uses CMake + ament underneath                    |
+
+---
+
+Now let's break them down clearly:
+
+---
+
+## 🔨 1. **CMake** (The Compiler Tool Generator)
+
+* **What it is**: A cross-platform tool to define how to build your C++ code (compile, link, install, etc.).
+* **Used by**: Low-level build of individual C++ packages.
+* **Not ROS-specific**.
+* **You write**: `CMakeLists.txt`.
+
+In ROS2, **CMake is used through the ament system**.
+
+---
+
+## 🧱 2. **ament** (ROS 2’s Build System)
+
+* **What it is**: ROS 2's **own build system**.
+* It wraps or extends **CMake (via `ament_cmake`)** or **Python setuptools (via `ament_python`)**.
+* Handles:
+
+  * Installing packages
+  * Generating interface files (msgs, srvs)
+  * Dependency resolution
+  * Indexing resources for ROS2
+
+### ament has 2 common flavors:
+
+| Variant        | Use Case         | Uses CMake?            |
+| -------------- | ---------------- | ---------------------- |
+| `ament_cmake`  | For C++ packages | ✅ Yes                  |
+| `ament_python` | For Python nodes | ❌ No (uses `setup.py`) |
+
+So: `ament` **sits above CMake** and defines ROS-specific rules.
+
+---
+
+## 🧠 3. **colcon** (Build Tool for the Whole Workspace)
+
+* **What it is**: The command-line tool to **build a whole ROS2 workspace** with multiple packages.
+* Think of it as the **successor to `catkin_make`** (from ROS 1).
+* **colcon** doesn’t build code itself — instead, it:
+
+  * Finds packages (both C++ and Python)
+  * Detects their build types (ament\_cmake, ament\_python, etc.)
+  * Calls **CMake or Python tools** appropriately
+  * Builds and installs in isolated fashion
+
+```bash
+colcon build --packages-select my_robot
+```
+
+> Internally, it calls CMake or Python setup depending on the package type.
+
+---
+
+## 📊 Analogy
+
+Imagine you're building a city:
+
+* 🧱 **CMake** = construction machinery (builds individual buildings)
+* 🧰 **ament** = building plans + rules for constructing homes, offices, etc. (defines *how* to use the machinery)
+* 🏗️ **colcon** = city manager that coordinates building all neighborhoods (packages) using the right plans and tools
+
+---
+
+## ✅ Summary
+
+| Tool   | Role                                                        | Directly Compiles Code? | ROS2 Specific? |
+| ------ | ----------------------------------------------------------- | ----------------------- | -------------- |
+| CMake  | Low-level tool for compiling and linking C++                | ✅ Yes                   | ❌ No           |
+| ament  | ROS2 build system that uses CMake (for C++) or Python setup | ❌ No (calls tools)      | ✅ Yes          |
+| colcon | Builds multiple packages in a workspace using ament         | ❌ No (orchestrator)     | ✅ Yes          |
+
+
+
     <h2>CMake</h2>
     <p>Welcome to the [About/Contact/Other] page. Replace this text with your content.</p>
 
